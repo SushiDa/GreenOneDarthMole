@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour {
     public float delaySecond;
     public string item;
     public bool init;
+    public int tier;
 
     private Rigidbody2D rb;
 
@@ -29,7 +30,13 @@ public class Spawner : MonoBehaviour {
     IEnumerator SpawnCoroutine()
     {
         yield return new WaitForSeconds(delaySecond);
-        GameObject.Instantiate(Resources.Load("Prefabs/" + item), transform.position, Quaternion.identity);
+        GameObject spawnedItem = GameObject.Instantiate(Resources.Load("Prefabs/" + item), transform.position, Quaternion.identity) as GameObject;
+
+        MaterialFusion fusion = spawnedItem.GetComponent<MaterialFusion>();
+        if(fusion != null)
+        {
+            fusion.tier = tier;
+        }
         Destroy(gameObject);
     }
 }

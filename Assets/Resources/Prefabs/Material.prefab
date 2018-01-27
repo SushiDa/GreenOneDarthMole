@@ -107,20 +107,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiersAndColors:
   - tier: 0
-    color: {r: 0, g: 1, b: 1, a: 0}
+    color: {r: 0, g: 1, b: 1, a: 1}
   - tier: 0
-    color: {r: 0, g: 0, b: 1, a: 0}
+    color: {r: 0, g: 0, b: 1, a: 1}
   - tier: 1
-    color: {r: 0, g: 0.49019608, b: 0, a: 0}
+    color: {r: 0, g: 0.49019608, b: 0, a: 1}
   - tier: 1
-    color: {r: 0, g: 1, b: 0, a: 0}
+    color: {r: 0, g: 1, b: 0, a: 1}
   - tier: 2
-    color: {r: 1, g: 0.49019608, b: 0, a: 0}
+    color: {r: 1, g: 0.49019608, b: 0, a: 1}
   - tier: 2
-    color: {r: 1, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
   detectWaitTime: 0.5
   canFuse: 1
-  resourceType: 0
+  resourceType: -1
   tier: 0
   Crystal: {fileID: 1833757455706214, guid: 24fd879cd0d20e4449a424c80455e039, type: 2}
   AuraCollider: {fileID: 58786284986434366}
