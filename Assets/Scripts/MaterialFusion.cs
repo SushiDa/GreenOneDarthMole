@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class MaterialFusion : MonoBehaviour {
 
+    [System.Serializable]
+    public struct TierColor
+    {
+        public int tier;
+        public Color color;
+    }
+    public TierColor[] tiersAndColors;
+
     public float detectWaitTime;
     public bool canFuse = true;
-    public int resourceType;
+    public int resourceType = -1;
+    public int tier = 0;
     public GameObject Crystal;
+    public Collider2D AuraCollider;
+
 
     public float CircleCastRadius;
     public float CircleCastForce;
@@ -15,7 +26,35 @@ public class MaterialFusion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         StartCoroutine("DetectOthers");
-	}
+
+
+        TierColor result = tiersAndColors[0];
+
+        if (resourceType <0 || resourceType>=tiersAndColors.Length )
+        {
+            //get random per tier
+            List<TierColor> list = new List<TierColor>(tiersAndColors);
+            List<TierColor> filtered = list.FindAll(x => x.tier == tier);
+
+            if (filtered.Count > 0)
+            {
+                resourceType = Random.Range(0, filtered.Count);
+            }
+            else
+            {
+                resourceType = 0;
+            }
+            result = tiersAndColors[resourceType];
+        }
+        else
+        {
+            // get per resource type
+            result = tiersAndColors[resourceType];
+        }
+
+        GetComponent<SpriteRenderer>().color = result.color;
+        tier = result.tier;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,7 +68,7 @@ public class MaterialFusion : MonoBehaviour {
             if (canFuse)
             {
                 Collider2D[] results = new Collider2D[20];
-                GetComponent<CircleCollider2D>().OverlapCollider(new ContactFilter2D()
+               AuraCollider.OverlapCollider(new ContactFilter2D()
                 {
                     useTriggers = true,
                     layerMask = LayerMask.GetMask("Material")

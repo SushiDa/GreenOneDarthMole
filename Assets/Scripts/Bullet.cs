@@ -30,6 +30,8 @@ public class Bullet : MonoBehaviour {
         if (other.tag == "Mole")
         {
             other.gameObject.GetComponent<Hole>().TakeDamage();
+            Destroy(gameObject);
         }
+
     }
 }

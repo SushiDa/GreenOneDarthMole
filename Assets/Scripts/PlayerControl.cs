@@ -23,6 +23,8 @@ public class PlayerControl : MonoBehaviour {
     private bool btn2Down;
     private bool btn2Up;
 
+    public RigidBodyParams[] rigidbodyParams;
+
     [Header("Matcher Parameters")]
     public float MatcherPlayerSpeed;
     public float MatcherThrowSpeed;
@@ -51,6 +53,17 @@ public class PlayerControl : MonoBehaviour {
     private List<AmmoType> currentAmmo;
 
 
+    [System.Serializable]
+    public struct RigidBodyParams
+    {
+        public PlayerControlType controlType;
+        public string layer;
+        public float mass;
+        public float linearDrag;
+        public float angularDrag;
+        public float gravityScale;
+        public bool freezeRotation;
+    }
 
     public enum PlayerControlType
     {
@@ -62,14 +75,15 @@ public class PlayerControl : MonoBehaviour {
     
     void Start () {
         rb = GetComponent<Rigidbody2D>();
+        ChangeControlType(ControlType);
         ps4 = false;
         initControlMapping();
         if (Input.GetJoystickNames().Length >= PlayerNumber && Input.GetJoystickNames()[PlayerNumber - 1].StartsWith("Wireless"))
         {
             switchToPS4Controller();
         }
-
-        currentAmmo = new List<AmmoType>();
+        
+        currentAmmo = new List<AmmoType>(); 
     }
 	
 	// Update is called once per frame
@@ -120,12 +134,25 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
+    public void ChangeControlType(PlayerControlType controlType)
+    {
+        ControlType = controlType;
+        RigidBodyParams param = new List<RigidBodyParams>(rigidbodyParams).Find(x => x.controlType == ControlType);
+
+        rb.mass = param.mass;
+        rb.drag = param.linearDrag;
+        rb.angularDrag = param.angularDrag;
+        rb.gravityScale = param.gravityScale;
+        rb.freezeRotation = param.freezeRotation;
+        gameObject.layer = LayerMask.NameToLayer(param.layer);
+    }
+
+    #region Matcher
     private void MatcherFixedUpdate()
     {
         rb.velocity = currentMovement * MatcherPlayerSpeed;
             //Vector2.SmoothDamp(rb.velocity, currentMovement * MatcherPlayerSpeed, ref playerSpeedDamp, 0.02f , MatcherPlayerSpeed, Time.fixedDeltaTime);
     }
-
 
     private void MatcherUpdate()
     {
@@ -168,6 +195,7 @@ public class PlayerControl : MonoBehaviour {
 
         }
     }
+    #endregion
 
 
     #region Shooter
@@ -324,8 +352,10 @@ public class PlayerControl : MonoBehaviour {
                 spawner.GetComponent<Spawner>().item = "MaterialNeutral";
             } else
             {
-                var randomItem = Random.Range(1, 3);
-                spawner.GetComponent<Spawner>().item = "MaterialTmp" + randomItem;
+                spawner.GetComponent<Spawner>().item = "Material";
+
+                //TODO récupérer le bon tier
+                spawner.GetComponent<Spawner>().tier = 1;
             }
         }
         Destroy(corpse);
@@ -366,6 +396,8 @@ public class PlayerControl : MonoBehaviour {
                         LoadAmmo(other.gameObject);
                         break;
                 }
+                break;
+            default:
                 break;
         }
     }

@@ -6,6 +6,8 @@ public class TestRotate : MonoBehaviour {
 
     Rigidbody2D rb;
     private float targetAngle;
+    public bool spin = true;
+    public float SpinSpeed;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -22,7 +24,8 @@ public class TestRotate : MonoBehaviour {
     {
 
         //rb.MoveRotation(targetAngle);
-        transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + 20 * Time.fixedDeltaTime);
+        if(spin)
+        transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + SpinSpeed * Time.fixedDeltaTime);
     }
 
     IEnumerator TurnCoroutine()
