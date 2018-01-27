@@ -12,6 +12,7 @@ TagManager:
   - Hole
   - Ammo
   - Mower
+  - Bullet
   - MaterialNeutral
   layers:
   - Default
@@ -34,7 +35,7 @@ TagManager:
   - Hole
   - Ammo
   - Spawner
-  - 
+  - Bullet
   - 
   - 
   - 
