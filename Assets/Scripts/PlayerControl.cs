@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour {
     [Header("Matcher Parameters")]
     public float MatcherPlayerSpeed;
     public float MatcherThrowSpeed;
+    public float MaterialPickupOffset;
     private Transform HeldMaterial = null;
     //private Vector2 playerSpeedDamp;
 
@@ -41,6 +42,16 @@ public class PlayerControl : MonoBehaviour {
     private float spawnForce = 5;
     private float materialSpawnDelay = 2;
     private float neutralMaterialChance = 0.1f;
+
+
+    [Header("Driller Parameters")]
+    public float DrillerPlayerSpeed;
+    public Rigidbody2D HeldDrill = null;
+    public SpriteRenderer AimSpriteRenderer;
+    public float DrillPickupOffset;
+    public float DrillLaunchSpeed;
+    public float DrillLifeTime;
+
 
 
     [System.Serializable]
@@ -99,6 +110,9 @@ public class PlayerControl : MonoBehaviour {
             case PlayerControlType.MATCHER:
                 MatcherUpdate();
                 break;
+            case PlayerControlType.DRILLER:
+                DrillerUpdate();
+                break;
         }
 
     }
@@ -113,6 +127,9 @@ public class PlayerControl : MonoBehaviour {
             case PlayerControlType.MOWER:
                 MowerFixedUpdate();
                 break;
+            case PlayerControlType.DRILLER:
+                DrillerFixedUpdate();
+                break;
             default:
                 break;
         }
@@ -120,6 +137,11 @@ public class PlayerControl : MonoBehaviour {
 
     public void ChangeControlType(PlayerControlType controlType)
     {
+        if(controlType != ControlType)
+        {
+            //Drop Held Item if necessary
+            
+        }
         ControlType = controlType;
         RigidBodyParams param = new List<RigidBodyParams>(rigidbodyParams).Find(x => x.controlType == ControlType);
 
@@ -135,7 +157,7 @@ public class PlayerControl : MonoBehaviour {
     private void MatcherFixedUpdate()
     {
         rb.velocity = currentMovement * MatcherPlayerSpeed;
-            //Vector2.SmoothDamp(rb.velocity, currentMovement * MatcherPlayerSpeed, ref playerSpeedDamp, 0.02f , MatcherPlayerSpeed, Time.fixedDeltaTime);
+        //Vector2.SmoothDamp(rb.velocity, currentMovement * MatcherPlayerSpeed, ref playerSpeedDamp, 0.02f , MatcherPlayerSpeed, Time.fixedDeltaTime);
     }
 
     private void MatcherUpdate()
@@ -147,7 +169,7 @@ public class PlayerControl : MonoBehaviour {
             if (HeldMaterial == null)
             {
                 Debug.DrawRay(transform.position, latestLookDirection, Color.green, 1);
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, latestLookDirection, 0.25f, LayerMask.GetMask("Material"));
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, latestLookDirection, MaterialPickupOffset, LayerMask.GetMask("Material"));
 
                 if (hit)
                 {
@@ -162,7 +184,7 @@ public class PlayerControl : MonoBehaviour {
             else
             {
 
-                HeldMaterial.position = transform.position + new Vector3(latestLookDirection.x*.25f, latestLookDirection.y*.25f);
+                HeldMaterial.position = transform.position + new Vector3(latestLookDirection.x* MaterialPickupOffset, latestLookDirection.y* MaterialPickupOffset);
                 Rigidbody2D otherRb = HeldMaterial.GetComponent<Rigidbody2D>();
                 if(otherRb != null)
                 {
@@ -249,6 +271,74 @@ public class PlayerControl : MonoBehaviour {
         drillStun = true;
         yield return new WaitForSeconds(1);
         drillStun = false;
+    }
+
+    #endregion
+
+    #region Driller
+
+    private void DrillerFixedUpdate()
+    {
+        float angle = Mathf.Atan2(currentMovement.y, currentMovement.x) * Mathf.Rad2Deg - 90;
+       transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (HeldDrill == null)
+        {
+            rb.velocity = currentMovement * DrillerPlayerSpeed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            HeldDrill.transform.position = transform.position + transform.up * DrillPickupOffset;
+            HeldDrill.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    }
+
+    private void DrillerUpdate()
+    {
+        if (HeldMaterial != null)
+            HeldDrill.position = transform.position;
+
+        if(btn1Down && HeldDrill == null)
+        {
+            Debug.DrawRay(transform.position, latestLookDirection, Color.red, 1);
+            //look for drill to hold
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, latestLookDirection, DrillPickupOffset, LayerMask.GetMask("Drill"));
+            if (hit && hit.transform.tag == "Drill")
+            {
+                AimSpriteRenderer.enabled = true;
+                HeldDrill = hit.collider.GetComponent<Rigidbody2D>();
+                HeldDrill.mass = 1;
+                HeldDrill.drag = 0;
+                var colliders = HeldDrill.GetComponents<Collider2D>();
+                foreach (Collider2D col in colliders)
+                {
+                    col.enabled = false;
+                }
+            }
+        }
+        else if (btn1Up && HeldDrill != null)
+        {
+            //release drill in the direction
+            FireDrill();
+        }
+
+        //other cases are invalid
+    }
+
+    private void FireDrill()
+    {
+        AimSpriteRenderer.enabled = false;
+
+        var colliders = HeldDrill.GetComponents<Collider2D>();
+        foreach (Collider2D col in colliders)
+        {
+            col.enabled = true;
+        }
+        HeldDrill.velocity = this.transform.up * DrillLaunchSpeed;
+        //TO CHANGE
+        GameObject.Destroy(HeldDrill.gameObject, DrillLifeTime);
+        HeldDrill = null;
     }
 
     #endregion

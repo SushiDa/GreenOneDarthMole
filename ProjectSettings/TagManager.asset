@@ -11,6 +11,8 @@ TagManager:
   - Crystal
   - Hole
   - Ammo
+  - Mower
+  - MaterialNeutral
   layers:
   - Default
   - TransparentFX

@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212815165001870414}
   - component: {fileID: 58005353392640688}
   - component: {fileID: 50163321297466682}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: MaterialNeutral
-  m_TagString: Material
+  m_TagString: MaterialNeutral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
