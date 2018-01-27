@@ -33,5 +33,11 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        if (other.tag == "Crystal")
+        {
+            other.gameObject.GetComponent<Crystal>().TakeDamage();
+            Destroy(gameObject);
+        }
+
     }
 }

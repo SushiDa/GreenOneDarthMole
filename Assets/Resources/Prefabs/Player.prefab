@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 1
-  ControlType: 2
+  ControlType: 0
   rigidbodyParams:
   - controlType: 1
     layer: Mower
@@ -115,9 +115,9 @@ MonoBehaviour:
     freezeRotation: 1
   - controlType: 0
     layer: Shooter
-    mass: 1
-    linearDrag: 0
-    angularDrag: 0.05
+    mass: 2000
+    linearDrag: 4
+    angularDrag: 0.5
     gravityScale: 1
     freezeRotation: 0
   MatcherPlayerSpeed: 5
@@ -126,6 +126,11 @@ MonoBehaviour:
   brakeForce: 125
   turnSpeed: 200
   drillStunForce: 5
+  ShooterPlayerSpeed: 4
+  baseAmmoTimer: 5
+  timerMalusPerAmmo: 0.2
+  baseFireTime: 3
+  bonusFireTime: 2
 --- !u!212 &212343290365040526
 SpriteRenderer:
   m_ObjectHideFlags: 1
