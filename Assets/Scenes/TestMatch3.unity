@@ -854,6 +854,11 @@ MonoBehaviour:
   PlayerNumber: 1
   ControlType: 2
   MatcherPlayerSpeed: 5
+  MatcherThrowSpeed: 8
+  thrust: 0
+  brakeForce: 0
+  turnSpeed: 0
+  drillStunForce: 0
 --- !u!1 &731137176
 GameObject:
   m_ObjectHideFlags: 0
