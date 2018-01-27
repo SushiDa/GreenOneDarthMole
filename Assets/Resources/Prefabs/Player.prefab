@@ -115,11 +115,11 @@ MonoBehaviour:
     freezeRotation: 1
   - controlType: 0
     layer: Shooter
-    mass: 2000
+    mass: 1
     linearDrag: 4
     angularDrag: 0.5
     gravityScale: 1
-    freezeRotation: 0
+    freezeRotation: 1
   MatcherPlayerSpeed: 5
   MatcherThrowSpeed: 8
   thrust: 500
