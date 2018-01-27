@@ -29,6 +29,17 @@ public class PlayerControl : MonoBehaviour {
     private Transform HeldMaterial = null;
     //private Vector2 playerSpeedDamp;
 
+    [Header("Mower Parameters")]
+    public float thrust;
+    public float brakeForce;
+    public float turnSpeed;
+    public float drillStunForce;
+    private bool drillStun = false;
+    private int nbSpawnMaterial = 3;
+    private float spawnForce = 5;
+    private float materialSpawnDelay = 2;
+    private float neutralMaterialChance = 0.1f;
+
 
 
     public enum PlayerControlType
@@ -67,7 +78,6 @@ public class PlayerControl : MonoBehaviour {
         btn2Up = getBtnUp("B");
         btn2Held = getBtn("B");
 
-
         switch (ControlType)
         {
             case PlayerControlType.MATCHER:
@@ -83,6 +93,9 @@ public class PlayerControl : MonoBehaviour {
         {
             case PlayerControlType.MATCHER:
                 MatcherFixedUpdate();
+                break;
+            case PlayerControlType.MOWER:
+                MowerFixedUpdate();
                 break;
             default:
                 break;
@@ -137,6 +150,96 @@ public class PlayerControl : MonoBehaviour {
 
         }
     }
+
+    #region Mower
+    private void MowerFixedUpdate()
+    {
+        if (btn1Held && !drillStun)
+        {
+            rb.AddForce(transform.up * thrust, ForceMode2D.Impulse);
+        }
+
+        if (btn2Held)
+        {
+            rb.AddForce(-transform.up * brakeForce, ForceMode2D.Impulse);
+        }
+
+        rb.MoveRotation(rb.rotation - Time.fixedDeltaTime * turnSpeed * currentMovement.x);
+    }
+
+    private void DrillStun(GameObject drill)
+    {
+        StartCoroutine("DrillStunCoroutine");
+        drill.GetComponent<Rigidbody2D>().AddForce(-transform.up * drillStunForce, ForceMode2D.Impulse);
+    }
+
+    private void MoleBump(GameObject mole)
+    {
+
+        /*var normal = rb.position - mole.GetComponent<Rigidbody2D>().position;
+        var inDir = new Vector2(transform.up.x, transform.up.y);
+        var outDir = Vector2.Reflect(inDir, normal);
+        Debug.Log(outDir);
+        Debug.Log(Vector2.Angle(Vector2.right, outDir));
+        rb.rotation = -Vector2.Angle(Vector2.right, outDir);*/
+        rb.rotation = rb.rotation + 180;
+        rb.velocity = Vector2.zero;
+
+        //TODO le stun
+    }
+
+    private void SpawnMaterial(GameObject corpse)
+    {
+        for(int i = 0; i < nbSpawnMaterial; i++)
+        {
+            var randomOffset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+            Debug.Log(randomOffset.normalized);
+            var randomForce = spawnForce/2 + spawnForce * Random.value;
+            var spawner = GameObject.Instantiate(Resources.Load("Prefabs/SpawnerTmp"), transform.position - transform.up * 0.5f + randomOffset.normalized * 0.4f, Quaternion.identity) as GameObject;
+            var spawnDir3 = spawner.transform.position - transform.position;
+            var spawnDir = new Vector2(spawnDir3.x, spawnDir3.y);
+            spawner.GetComponent<Rigidbody2D>().AddForce(spawnDir.normalized * randomForce, ForceMode2D.Impulse);
+            spawner.GetComponent<Spawner>().delaySecond = materialSpawnDelay;
+            if (Random.value < neutralMaterialChance)
+            {
+                spawner.GetComponent<Spawner>().item = "MaterialNeutral";
+            } else
+            {
+                var randomItem = Random.Range(1, 3);
+                spawner.GetComponent<Spawner>().item = "MaterialTmp" + randomItem;
+            }
+        }
+        Destroy(corpse);
+    }
+
+    IEnumerator DrillStunCoroutine()
+    {
+        drillStun = true;
+        yield return new WaitForSeconds(1);
+        drillStun = false;
+    }
+
+    #endregion
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Mole":
+                MoleBump(other.gameObject);
+                break;
+            case "Drill":
+                DrillStun(other.gameObject);
+                break;
+            case "Corpse":
+                SpawnMaterial(other.gameObject);
+                break;
+
+        }
+
+    }
+
+
     void switchToPS4Controller()
     {
         ps4 = true;
