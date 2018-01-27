@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class MaterialFusion : MonoBehaviour {
 
+    [System.Serializable]
+    public struct TierColor
+    {
+        public int tier;
+        public Color color;
+    }
+    public TierColor[] tiersAndColors;
+
     public float detectWaitTime;
     public bool canFuse = true;
     public int resourceType;
+    public int tier;
     public GameObject Crystal;
+    public Collider2D AuraCollider;
+
 
     public float CircleCastRadius;
     public float CircleCastForce;
@@ -15,7 +26,9 @@ public class MaterialFusion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         StartCoroutine("DetectOthers");
-	}
+        GetComponent<SpriteRenderer>().color = tiersAndColors[resourceType].color;
+        tier = tiersAndColors[resourceType].tier;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,7 +42,7 @@ public class MaterialFusion : MonoBehaviour {
             if (canFuse)
             {
                 Collider2D[] results = new Collider2D[20];
-                GetComponent<CircleCollider2D>().OverlapCollider(new ContactFilter2D()
+               AuraCollider.OverlapCollider(new ContactFilter2D()
                 {
                     useTriggers = true,
                     layerMask = LayerMask.GetMask("Material")
