@@ -14,6 +14,8 @@ public class PlayerControl : MonoBehaviour {
     private Rigidbody2D rb;
 
     private Vector2 currentMovement;
+    private Vector2 latestLookDirection;
+
     private bool btn1Held;
     private bool btn1Down;
     private bool btn1Up;
@@ -23,8 +25,9 @@ public class PlayerControl : MonoBehaviour {
 
     [Header("Matcher Parameters")]
     public float MatcherPlayerSpeed;
-    [SerializeField]
-    private Vector2 playerSpeedDamp;
+    public float MatcherThrowSpeed;
+    private Transform HeldMaterial = null;
+    //private Vector2 playerSpeedDamp;
 
 
 
@@ -53,14 +56,16 @@ public class PlayerControl : MonoBehaviour {
         currentMovement = new Vector2(getAxis("H") + getAxis("HD"), getAxis("V") + getAxis("VD"));
         if (currentMovement.magnitude > 1)
             currentMovement.Normalize();
+        if (currentMovement.magnitude > 0.2)
+            latestLookDirection = currentMovement.normalized;
 
         btn1Down = getBtnDown("A");
         btn1Up = getBtnUp("A");
         btn1Held = getBtn("A");
 
-        btn1Down = getBtnDown("B");
-        btn1Up = getBtnUp("B");
-        btn1Held = getBtn("B");
+        btn2Down = getBtnDown("B");
+        btn2Up = getBtnUp("B");
+        btn2Held = getBtn("B");
 
 
         switch (ControlType)
@@ -93,7 +98,44 @@ public class PlayerControl : MonoBehaviour {
 
     private void MatcherUpdate()
     {
+        if (HeldMaterial != null)
+            HeldMaterial.position = transform.position;
+        if (btn1Down)
+        {
+            if (HeldMaterial == null)
+            {
+                Debug.DrawRay(transform.position, latestLookDirection, Color.green, 1);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, latestLookDirection, 0.25f, LayerMask.GetMask("Material"));
 
+                if (hit)
+                {
+                    HeldMaterial = hit.collider.transform;
+                    var colliders = HeldMaterial.GetComponents<Collider2D>();
+                    foreach (Collider2D col in colliders)
+                    {
+                        col.enabled = false;
+                    }
+                }
+            }
+            else
+            {
+
+                HeldMaterial.position = transform.position + new Vector3(latestLookDirection.x*.25f, latestLookDirection.y*.25f);
+                Rigidbody2D otherRb = HeldMaterial.GetComponent<Rigidbody2D>();
+                if(otherRb != null)
+                {
+                    otherRb.velocity = latestLookDirection * currentMovement.magnitude * MatcherThrowSpeed;
+                }
+                var colliders = HeldMaterial.GetComponents<Collider2D>();
+                foreach (Collider2D col in colliders)
+                {
+                    col.enabled = true;
+                }
+
+                HeldMaterial = null;
+            }
+
+        }
     }
     void switchToPS4Controller()
     {
