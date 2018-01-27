@@ -40,6 +40,16 @@ public class PlayerControl : MonoBehaviour {
     private float materialSpawnDelay = 2;
     private float neutralMaterialChance = 0.1f;
 
+    [Header("Shooter Parameters")]
+    public float ShooterPlayerSpeed;
+    public float baseAmmoTimer;
+    public float timerMalusPerAmmo;
+    public float baseFireTime;
+    public float bonusFireTime;
+    private float ammoTimer;
+    private float shootTimer;
+    private List<AmmoType> currentAmmo;
+
 
 
     public enum PlayerControlType
@@ -58,6 +68,8 @@ public class PlayerControl : MonoBehaviour {
         {
             switchToPS4Controller();
         }
+
+        currentAmmo = new List<AmmoType>();
     }
 	
 	// Update is called once per frame
@@ -83,6 +95,9 @@ public class PlayerControl : MonoBehaviour {
             case PlayerControlType.MATCHER:
                 MatcherUpdate();
                 break;
+            case PlayerControlType.SHOOTER:
+                ShooterUpdate();
+                break;
         }
 
     }
@@ -96,6 +111,9 @@ public class PlayerControl : MonoBehaviour {
                 break;
             case PlayerControlType.MOWER:
                 MowerFixedUpdate();
+                break;
+            case PlayerControlType.SHOOTER:
+                ShooterFixedUpdate();
                 break;
             default:
                 break;
@@ -150,6 +168,107 @@ public class PlayerControl : MonoBehaviour {
 
         }
     }
+
+
+    #region Shooter
+    private void ShooterUpdate()
+    {
+        if (btn1Held && currentAmmo.Count > 0)
+        {
+            
+            if (ammoTimer == 0)
+            {
+                ammoTimer = GetAmmoTimerIncreaseValue();
+                shootTimer = 0;
+            }
+
+            if (shootTimer > 0)
+            {
+                GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, transform.rotation);
+                shootTimer -= GetShootFireTime();
+            }
+
+            shootTimer += Time.deltaTime;
+
+        }
+
+        if (ammoTimer > 0)
+        {
+            ammoTimer -= Time.deltaTime;
+            if (ammoTimer <= 0)
+            {
+                currentAmmo.Clear();
+                ammoTimer = 0;
+            }
+        } 
+
+        //Debug.Log(ammoTimer);
+    }
+
+    private void ShooterFixedUpdate()
+    {
+        if(currentMovement.magnitude > 0 && !btn1Held)
+        {
+            rb.velocity = currentMovement * ShooterPlayerSpeed;
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(currentMovement.normalized.y, currentMovement.normalized.x) * 180 / Mathf.PI);
+        } else
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+        if (btn1Held)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(currentMovement.normalized.y, currentMovement.normalized.x) * 180 / Mathf.PI);
+        }
+        
+    }
+
+    private float GetAmmoTimerIncreaseValue()
+    {
+        float increaseTimer = baseAmmoTimer;
+        for (int i = 1; i < currentAmmo.Count; i++)
+        {
+            increaseTimer = increaseTimer * (1 - timerMalusPerAmmo);
+        }
+        return increaseTimer;
+    }
+
+    private float GetShootFireTime()
+    {
+        int nbRapidFireAmmo = 0;
+        foreach(AmmoType type in currentAmmo)
+        {
+            if (type == AmmoType.RAPIDFIRE)
+            {
+                nbRapidFireAmmo++;
+            }
+        }
+        float fireRate = baseFireTime + nbRapidFireAmmo * bonusFireTime;
+        float fireTime = 1f / fireRate;
+
+        return fireTime;
+
+    }
+
+    private void LoadAmmo(GameObject ammo)
+    {
+        currentAmmo.Add(ammo.GetComponent<Ammo>().type);
+        Destroy(ammo);
+
+        if (ammoTimer > 0)
+        {
+            ammoTimer += GetAmmoTimerIncreaseValue();
+        }
+    }
+
+    public enum AmmoType
+    {
+        RAPIDFIRE,
+        MULTISHOT,
+        SPLASH
+    }
+
+    #endregion
 
     #region Mower
     private void MowerFixedUpdate()
@@ -223,20 +342,32 @@ public class PlayerControl : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        switch (other.gameObject.tag)
+        switch (ControlType)
         {
-            case "Mole":
-                MoleBump(other.gameObject);
-                break;
-            case "Drill":
-                DrillStun(other.gameObject);
-                break;
-            case "Corpse":
-                SpawnMaterial(other.gameObject);
-                break;
+            case PlayerControlType.MOWER:
+                switch (other.gameObject.tag)
+                {
+                    case "Mole":
+                        MoleBump(other.gameObject);
+                        break;
+                    case "Drill":
+                        DrillStun(other.gameObject);
+                        break;
+                    case "Corpse":
+                        SpawnMaterial(other.gameObject);
+                        break;
 
+                }
+                break;
+            case PlayerControlType.SHOOTER:
+                switch (other.gameObject.tag)
+                {
+                    case "Ammo":
+                        LoadAmmo(other.gameObject);
+                        break;
+                }
+                break;
         }
-
     }
 
 

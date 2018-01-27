@@ -11,6 +11,8 @@ TagManager:
   - Crystal
   - Hole
   - Ammo
+  - Mower
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -32,7 +34,7 @@ TagManager:
   - Hole
   - Ammo
   - Spawner
-  - 
+  - Bullet
   - 
   - 
   - 

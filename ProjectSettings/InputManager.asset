@@ -11,8 +11,8 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
-    altNegativeButton: left
-    altPositiveButton: right
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1
     dead: 0.19
     sensitivity: 1
@@ -29,9 +29,9 @@ InputManager:
     positiveButton: 
     altNegativeButton: left
     altPositiveButton: right
-    gravity: 1
+    gravity: 10
     dead: 0.19
-    sensitivity: 1
+    sensitivity: 10
     snap: 1
     invert: 0
     type: 0
@@ -163,6 +163,22 @@ InputManager:
     snap: 1
     invert: 1
     type: 2
+    axis: 1
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: P1V
+    descriptiveName: Player 1 Vertical
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: up
+    altPositiveButton: down
+    gravity: 10
+    dead: 0.19
+    sensitivity: 10
+    snap: 1
+    invert: 1
+    type: 0
     axis: 1
     joyNum: 1
   - serializedVersion: 3
