@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Mower
   - Material
   - Drill
   - Mole
   - Corpse
+  - Crystal
+  - Hole
+  - Ammo
   layers:
   - Default
   - TransparentFX
@@ -18,17 +20,17 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Shooter
+  - Mower
+  - Matcher
+  - Driller
+  - Material
+  - Drill
+  - Mole
+  - Corpse
+  - Crystal
+  - Hole
+  - Ammo
   - 
   - 
   - 

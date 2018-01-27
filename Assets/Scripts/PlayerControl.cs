@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour {
     public enum PlayerControlType
     {
         SHOOTER,
-        DRIVER,
+        MOWER,
         MATCHER,
         DRILLER
     }
