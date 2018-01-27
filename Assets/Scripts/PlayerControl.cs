@@ -23,6 +23,7 @@ public class PlayerControl : MonoBehaviour {
 
     [Header("Matcher Parameters")]
     public float MatcherPlayerSpeed;
+    [SerializeField]
     private Vector2 playerSpeedDamp;
 
 
@@ -85,7 +86,8 @@ public class PlayerControl : MonoBehaviour {
 
     private void MatcherFixedUpdate()
     {
-        rb.velocity = Vector2.SmoothDamp(rb.velocity, currentMovement * MatcherPlayerSpeed, ref playerSpeedDamp, 1, 0.1f, Time.deltaTime);
+        rb.velocity = currentMovement * MatcherPlayerSpeed;
+            //Vector2.SmoothDamp(rb.velocity, currentMovement * MatcherPlayerSpeed, ref playerSpeedDamp, 0.02f , MatcherPlayerSpeed, Time.fixedDeltaTime);
     }
 
 
