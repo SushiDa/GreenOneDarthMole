@@ -73,7 +73,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.05}
@@ -88,7 +88,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.05}
@@ -123,7 +123,7 @@ MonoBehaviour:
   resourceType: -1
   tier: 0
   Crystal: {fileID: 1833757455706214, guid: 24fd879cd0d20e4449a424c80455e039, type: 2}
-  AuraCollider: {fileID: 58786284986434366}
+  AuraCollider: {fileID: 58005353392640688}
   CircleCastRadius: 0.5
   CircleCastForce: 10
 --- !u!212 &212815165001870414

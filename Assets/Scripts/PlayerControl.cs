@@ -361,7 +361,8 @@ public class PlayerControl : MonoBehaviour {
 
     private void MoleBump(GameObject mole)
     {
-        Vector3 normal = (mole.transform.position - transform.position).normalized;
+        Vector2 offset = mole.GetComponent<Collider2D>().offset;
+        Vector3 normal = (mole.transform.position - transform.position + new Vector3(offset.x,offset.y)).normalized;
         Vector3 reflected = Vector3.Reflect(transform.up, normal);
         float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
