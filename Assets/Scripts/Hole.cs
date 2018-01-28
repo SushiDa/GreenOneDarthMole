@@ -22,7 +22,13 @@ public class Hole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (tag == "Mole")
+        {
+            GetComponent<Animator>().SetBool("hasMole", true);
+        } else
+        {
+            GetComponent<Animator>().SetBool("hasMole", false);
+        }
     }
 
     public bool TakeDamage()
@@ -41,24 +47,21 @@ public class Hole : MonoBehaviour
     {
         tag = "Hole";
         gameObject.layer = LayerMask.NameToLayer("Hole");
-
-        GetComponent<SpriteRenderer>().color = Color.black;
+        GetComponent<Animator>().SetBool("hasMole", false);
     }
 
     public void Pop()
     {
         tag = "Mole";
         gameObject.layer = LayerMask.NameToLayer("Mole");
-
-        GetComponent<SpriteRenderer>().color = Color.red;
+        GetComponent<Animator>().SetBool("hasMole", true);
     }
 
     private void Death()
     {
         tag = "Hole";
         gameObject.layer = LayerMask.NameToLayer("Hole");
-
-        GetComponent<SpriteRenderer>().color = Color.black;
+        GetComponent<Animator>().SetBool("hasMole", false);
 
     }
 

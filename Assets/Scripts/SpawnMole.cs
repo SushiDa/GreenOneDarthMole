@@ -134,15 +134,25 @@ public class SpawnMole : MonoBehaviour {
 
     private void SpawnExistingMole(GameObject mole)
     {
-        mole.GetComponent<Hole>().Pop();
+        StartCoroutine(SpawnExistingMoleCoroutine(mole));
     }
 
     private void SpawnNewMole()
     {
+        StartCoroutine(SpawnNewMoleCoroutine());
+    }
+
+    IEnumerator SpawnNewMoleCoroutine()
+    {
+        yield return new WaitForSeconds(1);
         var mole = GameObject.Instantiate(Resources.Load("Prefabs/HoleTmp"), new Vector3(Random.Range(minx, maxx), Random.Range(miny, maxy), 0), Quaternion.identity) as GameObject;
         mole.tag = "Mole";
         mole.layer = LayerMask.NameToLayer("Mole");
+    }
 
-        mole.GetComponent<SpriteRenderer>().color = Color.red;
+    IEnumerator SpawnExistingMoleCoroutine(GameObject mole)
+    {
+        yield return new WaitForSeconds(1);
+        mole.GetComponent<Hole>().Pop();
     }
 }
