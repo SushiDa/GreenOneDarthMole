@@ -55,6 +55,7 @@ public class PlayerControl : MonoBehaviour {
     public float bonusFireRate;
     public float baseProjectileSpeed;
     public float bonusProjectileSpeed;
+    public RuntimeAnimatorController ShooterController;
     private float ammoTimer;
     private float shootTimer;
     private List<AmmoType> currentAmmo;
@@ -277,7 +278,8 @@ public class PlayerControl : MonoBehaviour {
                 float totalAngle = nbShot * 10;
                 for (int i = 0; i < nbShot; i++)
                 {
-                    var angleOffset = -totalAngle / 2 + i * 10;
+                    var angleOffset = 5-totalAngle / 2 + i * 10;
+
                     var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, Quaternion.Euler(new Vector3(0, 0, transform.rotation.eulerAngles.z + 90f + angleOffset))) as GameObject;
                     bullet.GetComponent<Bullet>().SetProjectileSpeed(GetShootProjectileSpeed());
                     bullet.GetComponent<Bullet>().SetNbSplash(GetShootNbSplash());

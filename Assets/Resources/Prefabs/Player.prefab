@@ -267,6 +267,7 @@ MonoBehaviour:
   bonusFireRate: 2
   baseProjectileSpeed: 0.15
   bonusProjectileSpeed: 0.05
+  ShooterController: {fileID: 9100000, guid: ae3716c3dc5c14b41b246b44a5d6ccf6, type: 2}
   DrillerPlayerSpeed: 3
   HeldDrill: {fileID: 0}
   AimSpriteRenderer: {fileID: 212918561295050328}
