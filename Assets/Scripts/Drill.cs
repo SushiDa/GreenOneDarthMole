@@ -27,6 +27,7 @@ public class Drill : MonoBehaviour {
         float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         rb.velocity = transform.up * rb.velocity.magnitude;
+        BounceCount++;
         if (BounceCount > MaxBounceCount)
         {
             GameObject.Destroy(this.gameObject);
@@ -41,7 +42,6 @@ public class Drill : MonoBehaviour {
             if (collision.tag == "MaterialNeutral" )
             {
                 Bounce(normal);
-                BounceCount++;
             }
 
             if (collision.tag == "Mole")
@@ -52,6 +52,16 @@ public class Drill : MonoBehaviour {
             if (collision.tag == "Corpse")
             {
                 GameObject.Destroy(collision.gameObject);
+            }
+
+            if (collision.tag == "GlobalWall")
+            {
+                normal = Vector2.right;
+                if(collision.transform.localScale.x > collision.transform.localScale.y)
+                {
+                    normal = Vector2.up;
+                }
+                Bounce(normal);
             }
 
             if (collision.tag == "Crystal")

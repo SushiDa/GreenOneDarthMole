@@ -346,25 +346,19 @@ public class PlayerControl : MonoBehaviour {
 
     private void MoleBump(GameObject mole)
     {
-
-        /*var normal = rb.position - mole.GetComponent<Rigidbody2D>().position;
-        var inDir = new Vector2(transform.up.x, transform.up.y);
-        var outDir = Vector2.Reflect(inDir, normal);
-        Debug.Log(outDir);
-        Debug.Log(Vector2.Angle(Vector2.right, outDir));
-        rb.rotation = -Vector2.Angle(Vector2.right, outDir);*/
-        rb.rotation = rb.rotation + 180;
+        Vector3 normal = (mole.transform.position - transform.position).normalized;
+        Vector3 reflected = Vector3.Reflect(transform.up, normal);
+        float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg - 90;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         rb.velocity = Vector2.zero;
-
-        //TODO le stun
     }
+    
 
     private void SpawnMaterial(GameObject corpse)
     {
         for(int i = 0; i < nbSpawnMaterial; i++)
         {
             var randomOffset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-            Debug.Log(randomOffset.normalized);
             var randomForce = spawnForce/2 + spawnForce * Random.value;
             var spawner = GameObject.Instantiate(Resources.Load("Prefabs/SpawnerTmp"), transform.position - transform.up * 0.5f + randomOffset.normalized * 0.4f, Quaternion.identity) as GameObject;
             var spawnDir3 = spawner.transform.position - transform.position;

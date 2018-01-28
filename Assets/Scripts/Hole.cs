@@ -6,6 +6,12 @@ public class Hole : MonoBehaviour
 {
 
     private int hp;
+    public GameObject CorpsePrefab;
+    public GameObject DrillPrefab;
+    public float CorpseSpawnMaxSpeed;
+    public float CorpseSpawnMinSpeed;
+    public float DrillSpawnMaxSpeed;
+    public float DrillSpawnMinSpeed;
 
     // Use this for initialization
     void Start()
@@ -16,16 +22,19 @@ public class Hole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    public void TakeDamage()
+    public bool TakeDamage()
     {
+        bool alive = true;
         hp--;
         if (hp <= 0)
         {
+            alive = false;
             Death();
         }
+        return alive;
     }
 
     public void Hide()
@@ -53,5 +62,10 @@ public class Hole : MonoBehaviour
 
     }
 
+    public void SpawnCorpses(Vector2 direction)
+    {
+        Vector2 drillDirection = direction.normalized;
+        
+    }
     
 }
