@@ -9,8 +9,8 @@ public class SpawnMole : MonoBehaviour {
     public float spawnChance;
     public float hideChance;
 
-    private float minx = -5f;
-    private float maxx = 5f;
+    private float minx = -9f;
+    private float maxx = 9f;
     private float miny = -5f;
     private float maxy = 5f;
 
