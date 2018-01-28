@@ -55,6 +55,8 @@ public class Hole : MonoBehaviour
         attacTimer += Time.deltaTime;
         if (attacTimer > attacPeriod)
         {
+
+            CameraSFXPlayer.PlayClip("M ATTAC");
             GetComponent<Animator>().SetBool("isAttac", true);
             attacTimer -= attacPeriod;
         }
@@ -111,6 +113,8 @@ public class Hole : MonoBehaviour
 
     public void Pop()
     {
+
+        CameraSFXPlayer.PlayClip("M SPAWN");
         tag = "Mole";
         MaterialTriggered = false;
         gameObject.layer = LayerMask.NameToLayer("Mole");
@@ -121,12 +125,15 @@ public class Hole : MonoBehaviour
 
     public void Stun()
     {
+        CameraSFXPlayer.PlayClip("M STUN");
         stunTimer = 20f;
         GetComponent<Animator>().SetBool("isStunned", true);
     }
 
     private void Death()
     {
+
+        CameraSFXPlayer.PlayClip("M DEATH");
         tag = "Hole";
         gameObject.layer = LayerMask.NameToLayer("Hole");
         GetComponent<Animator>().SetBool("hasMole", false);

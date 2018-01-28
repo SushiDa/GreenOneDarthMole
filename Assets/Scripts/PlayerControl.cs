@@ -201,6 +201,7 @@ public class PlayerControl : MonoBehaviour {
 
                 if (hit)
                 {
+                    CameraSFXPlayer.PlayClip("MATCH PICK");
                     HeldMaterial = hit.collider.transform;
                     var colliders = HeldMaterial.GetComponents<Collider2D>();
                     foreach (Collider2D col in colliders)
@@ -212,6 +213,7 @@ public class PlayerControl : MonoBehaviour {
             else
             {
 
+                CameraSFXPlayer.PlayClip("MATCH PICK");
                 HeldMaterial.position = transform.position + new Vector3(latestLookDirection.x* MaterialPickupOffset, latestLookDirection.y* MaterialPickupOffset);
                 Rigidbody2D otherRb = HeldMaterial.GetComponent<Rigidbody2D>();
                 if(otherRb != null)
@@ -246,6 +248,8 @@ public class PlayerControl : MonoBehaviour {
 
             if (shootTimer > 0)
             {
+
+                CameraSFXPlayer.PlayClip("SHOOT FIRE");
                 var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, Quaternion.Euler(new Vector3(0,0,transform.rotation.eulerAngles.z + 90f))) as GameObject;
                 bullet.GetComponent<Bullet>().SetProjectileSpeed(GetShootProjectileSpeed());
                 shootTimer -= GetShootFireTime();
@@ -327,6 +331,8 @@ public class PlayerControl : MonoBehaviour {
 
     private void LoadAmmo(GameObject ammo)
     {
+
+        CameraSFXPlayer.PlayClip("SHOOT LOAD");
         currentAmmo.Add(ammo.GetComponent<Ammo>().type);
         Destroy(ammo);
 
@@ -366,12 +372,15 @@ public class PlayerControl : MonoBehaviour {
 
     private void DrillStun(GameObject drill)
     {
+
+        CameraSFXPlayer.PlayClip("MOW STUN");
         StartCoroutine("DrillStunCoroutine");
         drill.GetComponent<Rigidbody2D>().AddForce(-transform.up * drillStunForce, ForceMode2D.Impulse);
     }
 
     private void MoleBump(GameObject mole)
     {
+        CameraSFXPlayer.PlayClip("MOW BUMP");
         Vector2 offset = mole.GetComponent<Collider2D>().offset;
         Vector3 normal = (mole.transform.position - transform.position + new Vector3(offset.x,offset.y)).normalized;
         Vector3 reflected = Vector3.Reflect(transform.up, normal);
@@ -387,6 +396,8 @@ public class PlayerControl : MonoBehaviour {
 
     private void SpawnMaterial(GameObject corpse)
     {
+
+        CameraSFXPlayer.PlayClip("MOW KILL");
         int corpseTier = corpse.GetComponent<Corpse>().tier;
         for(int i = 0; i < nbSpawnMaterial; i++)
         {
@@ -488,6 +499,8 @@ public class PlayerControl : MonoBehaviour {
         }
         HeldDrill.velocity = this.transform.up * DrillLaunchSpeed;
         HeldDrill.GetComponent<Drill>().Drilling = true;
+
+        CameraSFXPlayer.PlayClip("DRILL SHORT");
         //TO CHANGE ?
         GameObject.Destroy(HeldDrill.gameObject, DrillLifeTime);
         HeldDrill = null;
@@ -531,10 +544,12 @@ public class PlayerControl : MonoBehaviour {
 
         if(other.gameObject.tag == "Energy")
         {
-            //
+
             if(GM != null)
                 GM.DoScore();
             //Play PickupSound
+
+            CameraSFXPlayer.PlayClip("LOOT");
             Destroy(other.gameObject);
         }
     }

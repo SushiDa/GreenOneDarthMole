@@ -62,11 +62,14 @@ public class Drill : MonoBehaviour {
             Vector2 normal = (collision.transform.position - transform.position).normalized;
             if (collision.tag == "MaterialNeutral" )
             {
+                CameraSFXPlayer.PlayClip("DRILL RBREAK");
                 Bounce(normal);
+                GameObject.Destroy(collision.gameObject);
             }
 
             if (collision.tag == "Mole")
             {
+                CameraSFXPlayer.PlayClip("DRILL MBOUNCE");
                 GameObject.Destroy(this.gameObject);
             }
 
@@ -77,7 +80,8 @@ public class Drill : MonoBehaviour {
 
             if (collision.tag == "GlobalWall")
             {
-                if(collision.transform.localScale.x > collision.transform.localScale.y)
+                CameraSFXPlayer.PlayClip("DRILL RBOUNCE");
+                if (collision.transform.localScale.x > collision.transform.localScale.y)
                 {
                     normal = Vector2.up;
                 }
@@ -97,7 +101,8 @@ public class Drill : MonoBehaviour {
 
                 if(spawnAmmo)
                 {
-                    
+
+                    CameraSFXPlayer.PlayClip("DRILL CBREAK");
                     for (int i = 0; i < 1+2*(comboCount+tier); i++)
                     {
                         GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
@@ -109,6 +114,7 @@ public class Drill : MonoBehaviour {
                 }
                 else
                 {
+                    CameraSFXPlayer.PlayClip("DRILL CBOUNCE");
                     Bounce(normal);
                 }
             }

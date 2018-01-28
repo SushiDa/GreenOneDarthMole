@@ -106,6 +106,9 @@ public class MaterialFusion : MonoBehaviour {
 
                 if(other1 != null && other1.canFuse && other2 != null && other2.canFuse)
                 {
+
+                    CameraSFXPlayer.PlayClip("MATCH");
+                    CameraSFXPlayer.PlayClip("EXPLOSION");
                     int chainCombo = Mathf.Max(other1.currentChainCombo, other2.currentChainCombo, currentChainCombo);
 
                     other1.canFuse = false;

@@ -93,6 +93,7 @@ MonoBehaviour:
   MaxBounceCount: 3
   tier: 1
   AmmoPrefab: {fileID: 1033955029826936, guid: af2fef43c07b16b41b77e048c42ecf31, type: 2}
+  comboCount: 1
 --- !u!212 &212551244190170576
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -125,7 +126,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 943784635
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3bfb616b9b40e484e97027d8b7483e14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
