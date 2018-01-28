@@ -69,7 +69,7 @@ Transform:
   m_GameObject: {fileID: 1452376906786512}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.4263873, y: -1.1636324, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
   - {fileID: 4405649434696246}
   m_Father: {fileID: 0}
@@ -259,7 +259,7 @@ MonoBehaviour:
   brakeForce: 125
   turnSpeed: 200
   drillStunForce: 5
-  MowerController: {fileID: 9100000, guid: 101cfe65b72e3d047b4760a8d4cd792d, type: 2}
+  MowerController: {fileID: 9100000, guid: ae3716c3dc5c14b41b246b44a5d6ccf6, type: 2}
   ShooterPlayerSpeed: 4
   baseAmmoTimer: 5
   timerMalusPerAmmo: 0.2
@@ -267,13 +267,14 @@ MonoBehaviour:
   bonusFireRate: 2
   baseProjectileSpeed: 0.15
   bonusProjectileSpeed: 0.05
-  ShooterController: {fileID: 9100000, guid: ae3716c3dc5c14b41b246b44a5d6ccf6, type: 2}
+  ShooterController: {fileID: 9100000, guid: 101cfe65b72e3d047b4760a8d4cd792d, type: 2}
   DrillerPlayerSpeed: 3
   HeldDrill: {fileID: 0}
   AimSpriteRenderer: {fileID: 212918561295050328}
   DrillPickupOffset: 0.15
   DrillLaunchSpeed: 5
   DrillLifeTime: 3
+  DrillerController: {fileID: 9100000, guid: becfd3646d3fb4e44ae0a50bed4ed295, type: 2}
 --- !u!212 &212343290365040526
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -308,7 +309,7 @@ SpriteRenderer:
   m_SortingLayerID: 393538945
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed7de28d41f22a44d9578b0c790fec7c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -316,7 +317,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212918561295050328
 SpriteRenderer:

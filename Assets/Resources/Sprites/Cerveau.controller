@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Shooter
+  m_Name: Cerveau
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: mouvementX
@@ -148,7 +148,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6558db78bb8df834c845e39efe862eee, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2fea40c2c239562478f3eaf323d361a7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -173,7 +173,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cc7f6d27a3f434747a17b429da5d6724, type: 2}
+  m_Motion: {fileID: 7400000, guid: 88c7a31c61aecec4285d8506c2587494, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -198,7 +198,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 973256ecdbec8444cb67b078e3941028, type: 2}
+  m_Motion: {fileID: 7400000, guid: 735233b7d5a73cd4fbe38fb7e016fbc7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -223,7 +223,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c709cace6556bd445a295c3e89095a23, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3b51b51a8394f3b49904a0361ced9d3d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

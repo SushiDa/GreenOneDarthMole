@@ -1722,6 +1722,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: DrillerController
+      value: 
+      objectReference: {fileID: 9100000, guid: becfd3646d3fb4e44ae0a50bed4ed295, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
   m_IsPrefabParent: 0

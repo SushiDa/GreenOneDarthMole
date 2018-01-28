@@ -68,6 +68,7 @@ public class PlayerControl : MonoBehaviour {
     public float DrillPickupOffset;
     public float DrillLaunchSpeed;
     public float DrillLifeTime;
+    public RuntimeAnimatorController DrillerController;
 
 
 
@@ -192,8 +193,10 @@ public class PlayerControl : MonoBehaviour {
                 animator.runtimeAnimatorController = MowerController;
                 break;
             case PlayerControlType.DRILLER:
+                animator.runtimeAnimatorController = DrillerController;
                 break;
             case PlayerControlType.SHOOTER:
+                animator.runtimeAnimatorController = ShooterController;
                 break;
             default:
                 break;
@@ -516,6 +519,9 @@ public class PlayerControl : MonoBehaviour {
             HeldDrill.transform.position = transform.position + transform.up * DrillPickupOffset;
             HeldDrill.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+
+        gameObject.GetComponent<Animator>().SetFloat("mouvementX", transform.up.x);
+        gameObject.GetComponent<Animator>().SetFloat("mouvementY", transform.up.y);
     }
 
     private void DrillerUpdate()

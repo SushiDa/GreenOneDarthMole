@@ -946,6 +946,26 @@ Prefab:
       propertyPath: ControlType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95550897133850896, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 212343290365040526, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.2827587
+      objectReference: {fileID: 0}
+    - target: {fileID: 212343290365040526, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212343290365040526, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
   m_IsPrefabParent: 0
@@ -7739,6 +7759,11 @@ Prefab:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: DrillerController
+      value: 
+      objectReference: {fileID: 9100000, guid: becfd3646d3fb4e44ae0a50bed4ed295, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
   m_IsPrefabParent: 0
