@@ -30,14 +30,17 @@ public class PlayerControl : MonoBehaviour {
     public float MatcherPlayerSpeed;
     public float MatcherThrowSpeed;
     public float MaterialPickupOffset;
+    public RuntimeAnimatorController MatcherController;
     private Transform HeldMaterial = null;
     //private Vector2 playerSpeedDamp;
+
 
     [Header("Mower Parameters")]
     public float thrust;
     public float brakeForce;
     public float turnSpeed;
     public float drillStunForce;
+    public RuntimeAnimatorController MowerController;
     private bool drillStun = false;
     private int nbSpawnMaterial = 3;
     private float spawnForce = 5;
@@ -177,6 +180,23 @@ public class PlayerControl : MonoBehaviour {
         rb.gravityScale = param.gravityScale;
         rb.freezeRotation = param.freezeRotation;
         gameObject.layer = LayerMask.NameToLayer(param.layer);
+
+        var animator = GetComponent<Animator>();
+        switch (ControlType)
+        {
+            case PlayerControlType.MATCHER:
+                animator.runtimeAnimatorController = MatcherController;
+                break;
+            case PlayerControlType.MOWER:
+                animator.runtimeAnimatorController = MowerController;
+                break;
+            case PlayerControlType.DRILLER:
+                break;
+            case PlayerControlType.SHOOTER:
+                break;
+            default:
+                break;
+        }
     }
 
     #region Matcher
@@ -186,6 +206,9 @@ public class PlayerControl : MonoBehaviour {
         float angle = Mathf.Atan2(latestLookDirection.y, latestLookDirection.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //Vector2.SmoothDamp(rb.velocity, currentMovement * MatcherPlayerSpeed, ref playerSpeedDamp, 0.02f , MatcherPlayerSpeed, Time.fixedDeltaTime);
+
+        gameObject.GetComponent<Animator>().SetFloat("mouvementX", transform.up.x);
+        gameObject.GetComponent<Animator>().SetFloat("mouvementY", transform.up.y);
     }
 
     private void MatcherUpdate()
@@ -292,7 +315,10 @@ public class PlayerControl : MonoBehaviour {
         {
             transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(latestLookDirection.normalized.y, latestLookDirection.normalized.x) * 180 / Mathf.PI);
         }
-        
+
+        gameObject.GetComponent<Animator>().SetFloat("mouvementX", transform.up.x);
+        gameObject.GetComponent<Animator>().SetFloat("mouvementY", transform.up.y);
+
     }
 
     private float GetAmmoTimerIncreaseValue()

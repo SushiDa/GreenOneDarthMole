@@ -254,10 +254,12 @@ MonoBehaviour:
   MatcherPlayerSpeed: 5
   MatcherThrowSpeed: 8
   MaterialPickupOffset: 0.25
+  MatcherController: {fileID: 9100000, guid: faa80d557a14f58439a986544f7581a8, type: 2}
   thrust: 500
   brakeForce: 125
   turnSpeed: 200
   drillStunForce: 5
+  MowerController: {fileID: 9100000, guid: 101cfe65b72e3d047b4760a8d4cd792d, type: 2}
   ShooterPlayerSpeed: 4
   baseAmmoTimer: 5
   timerMalusPerAmmo: 0.2
