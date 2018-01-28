@@ -10,8 +10,10 @@ public class Hole : MonoBehaviour
     public GameObject DrillPrefab;
     public float CorpseSpawnMaxSpeed;
     public float CorpseSpawnMinSpeed;
+    public float CorpseSpawnAngle;
     public float DrillSpawnMaxSpeed;
     public float DrillSpawnMinSpeed;
+    public float DrillSpawnAngle;
 
     // Use this for initialization
     void Start()
@@ -67,8 +69,24 @@ public class Hole : MonoBehaviour
 
     public void SpawnCorpses(Vector2 direction)
     {
-        Vector2 drillDirection = direction.normalized;
-        
+
+        float ranAngleDrill = Random.Range(-DrillSpawnAngle, DrillSpawnAngle);
+        float ranSpeedDrill = Random.Range(DrillSpawnMinSpeed, DrillSpawnMaxSpeed);
+        float angleDrill = Mathf.Atan2(direction.normalized.y, direction.normalized.x) * Mathf.Rad2Deg - 90 + ranAngleDrill;
+        Quaternion drillRotation = Quaternion.AngleAxis(angleDrill, Vector3.forward);
+        GameObject drill = Instantiate(DrillPrefab, transform.position, drillRotation);
+        drill.GetComponent<Rigidbody2D>().velocity = drill.transform.up * ranSpeedDrill;
+        drill.GetComponent<Collider2D>().isTrigger = false;
+        drill.GetComponent<Rigidbody2D>().angularDrag = 5;
+
+        float ranAngleCorpse = Random.Range(-CorpseSpawnAngle, CorpseSpawnAngle);
+        float ranSpeedCorpse= Random.Range(CorpseSpawnMinSpeed, CorpseSpawnMaxSpeed);
+        float angleCorpse = Mathf.Atan2(direction.normalized.y, direction.normalized.x) * Mathf.Rad2Deg - 90 + ranAngleCorpse;
+        Quaternion corpseRotation = Quaternion.AngleAxis(angleCorpse, Vector3.forward);
+        GameObject corpse = Instantiate(CorpsePrefab, transform.position, corpseRotation);
+        corpse.GetComponent<Rigidbody2D>().velocity = corpse.transform.up * ranSpeedCorpse;
+        corpse.GetComponent<Collider2D>().isTrigger = false;
+        corpse.GetComponent<Rigidbody2D>().angularDrag = 5;
     }
     
 }

@@ -29,7 +29,10 @@ public class Bullet : MonoBehaviour {
     {
         if (other.tag == "Mole")
         {
-            other.gameObject.GetComponent<Hole>().TakeDamage();
+            if(!other.gameObject.GetComponent<Hole>().TakeDamage())
+            {
+                other.gameObject.GetComponent<Hole>().SpawnCorpses(transform.up);
+            }
             Destroy(gameObject);
         }
 

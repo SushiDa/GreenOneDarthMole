@@ -86,6 +86,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be7bf3ed8e0a92469ae522bbfd92f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CorpsePrefab: {fileID: 1558443262341724, guid: 2d379f26b778d8d41bbbe1120cb5b228,
+    type: 2}
+  DrillPrefab: {fileID: 1162139031701004, guid: 830df844406ec694f944b75e566137ae,
+    type: 2}
+  CorpseSpawnMaxSpeed: 3
+  CorpseSpawnMinSpeed: 7
+  CorpseSpawnAngle: 60
+  DrillSpawnMaxSpeed: 2
+  DrillSpawnMinSpeed: 10
+  DrillSpawnAngle: 45
 --- !u!212 &212815165001870414
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,7 +128,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 393538945
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -18,7 +18,11 @@ public class Drill : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (rb.velocity.magnitude == 0)
+        {
+            GetComponent<Collider2D>().isTrigger = true;
+            rb.angularDrag = 0.05f;
+        }
 	}
 
     private void Bounce(Vector2 normal)
