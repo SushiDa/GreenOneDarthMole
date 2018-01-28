@@ -62,11 +62,15 @@ public class Drill : MonoBehaviour {
 
             if (collision.tag == "GlobalWall")
             {
-                normal = Vector2.right;
                 if(collision.transform.localScale.x > collision.transform.localScale.y)
                 {
                     normal = Vector2.up;
                 }
+                else if(collision.transform.localScale.x < collision.transform.localScale.y)
+                {
+                    normal = Vector2.right;
+                }
+
                 Bounce(normal);
             }
 

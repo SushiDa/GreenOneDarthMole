@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b942766cc3449da4c8e9c54c8c3eb2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivationTime: 1
+  ActivationTime: 0.5
   MinSpawnSpeed: 3
   MaxSpawnSpeed: 6
   LifeSpan: 5
