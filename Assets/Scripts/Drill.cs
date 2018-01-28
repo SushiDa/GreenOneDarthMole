@@ -110,7 +110,7 @@ public class Drill : MonoBehaviour {
 
                     comboCount++;
                     GameObject ammo = GameObject.Instantiate(AmmoPrefab, collision.transform.position, Quaternion.identity);
-                    //ammo.GetComponent<Ammo>();
+                    ammo.GetComponent<Ammo>().type = (PlayerControl.AmmoType)crystal.tier;
                 }
                 else
                 {

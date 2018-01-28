@@ -379,9 +379,9 @@ public class PlayerControl : MonoBehaviour {
 
     public enum AmmoType
     {
-        RAPIDFIRE,
-        MULTISHOT,
-        SPLASH
+        RAPIDFIRE = 1,
+        MULTISHOT = 2,
+        SPLASH = 3
     }
 
     #endregion

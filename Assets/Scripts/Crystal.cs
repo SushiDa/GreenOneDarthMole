@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Crystal : MonoBehaviour {
 
+    [SerializeField]
     private int hp;
     public int tier = 1;
 
@@ -29,6 +30,17 @@ public class Crystal : MonoBehaviour {
         {
             alive = false;
             Destroy(gameObject);
+        }
+        else
+        {
+            //trust me
+            int index = (hp - 1) / 3;
+
+            if (index < 0) index = 0;
+            if (index > 2) index = 2;
+
+            GetComponent<SpriteRenderer>().sprite = tierSprites[index];
+
         }
         return alive;
     }

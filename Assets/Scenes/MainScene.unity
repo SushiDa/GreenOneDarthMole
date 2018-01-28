@@ -4305,10 +4305,6 @@ Prefab:
       propertyPath: m_Name
       value: Corpse (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 4698685323215386, guid: 2d379f26b778d8d41bbbe1120cb5b228, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 57.666004
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d379f26b778d8d41bbbe1120cb5b228, type: 2}
   m_IsPrefabParent: 0
@@ -4637,6 +4633,11 @@ Prefab:
     - target: {fileID: 1833757455706214, guid: 24fd879cd0d20e4449a424c80455e039, type: 2}
       propertyPath: m_Name
       value: Crystal (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928855233239496, guid: 24fd879cd0d20e4449a424c80455e039,
+        type: 2}
+      propertyPath: tier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24fd879cd0d20e4449a424c80455e039, type: 2}
@@ -5423,6 +5424,11 @@ Prefab:
     - target: {fileID: 4559726024596068, guid: 830df844406ec694f944b75e566137ae, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 17.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114987298344878978, guid: 830df844406ec694f944b75e566137ae,
+        type: 2}
+      propertyPath: tier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 830df844406ec694f944b75e566137ae, type: 2}
@@ -7364,6 +7370,11 @@ Prefab:
       propertyPath: m_Name
       value: Crystal (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 114928855233239496, guid: 24fd879cd0d20e4449a424c80455e039,
+        type: 2}
+      propertyPath: tier
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24fd879cd0d20e4449a424c80455e039, type: 2}
   m_IsPrefabParent: 0
@@ -7738,6 +7749,11 @@ Prefab:
         type: 2}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82088445040454528, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
