@@ -27,7 +27,7 @@ public class TestRotate : MonoBehaviour {
 
         startAngle = transform.rotation.eulerAngles.z;
         currentAngle = startAngle;
-        timer = -2f;
+        timer = -30f; //temps avant la première
     }
 	
 	// Update is called once per frame
@@ -38,7 +38,6 @@ public class TestRotate : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        Debug.Log("timer " + timer);
         timer += Time.fixedDeltaTime;
         if (timer > 0)
         {
@@ -76,8 +75,7 @@ public class TestRotate : MonoBehaviour {
                     }
                 }
             }
-
-            Debug.Log("angle " + currentAngle);
+            
             transform.rotation = Quaternion.Euler(0, 0, currentAngle);
         }
 

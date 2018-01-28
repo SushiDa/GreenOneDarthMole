@@ -45,7 +45,6 @@ public class SpawnMole : MonoBehaviour {
 
             List<GameObject> hidingMoles = new List<GameObject>();
             List<GameObject> spawningMoles = new List<GameObject>();
-            List<GameObject> newMoles = new List<GameObject>();
 
             if (hideCount > moles.Length)
             {
