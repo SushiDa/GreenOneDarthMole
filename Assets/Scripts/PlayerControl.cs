@@ -47,8 +47,10 @@ public class PlayerControl : MonoBehaviour {
     public float ShooterPlayerSpeed;
     public float baseAmmoTimer;
     public float timerMalusPerAmmo;
-    public float baseFireTime;
-    public float bonusFireTime;
+    public float baseFireRate;
+    public float bonusFireRate;
+    public float baseProjectileSpeed;
+    public float bonusProjectileSpeed;
     private float ammoTimer;
     private float shootTimer;
     private List<AmmoType> currentAmmo;
@@ -225,7 +227,7 @@ public class PlayerControl : MonoBehaviour {
     #region Shooter
     private void ShooterUpdate()
     {
-        if (btn1Held && currentAmmo.Count > 0)
+        if (btn1Held)
         {
             
             if (ammoTimer == 0)
@@ -236,7 +238,8 @@ public class PlayerControl : MonoBehaviour {
 
             if (shootTimer > 0)
             {
-                GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, transform.rotation);
+                var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, transform.rotation) as GameObject;
+                bullet.GetComponent<Bullet>().SetProjectileSpeed(GetShootProjectileSpeed());
                 shootTimer -= GetShootFireTime();
             }
 
@@ -253,8 +256,6 @@ public class PlayerControl : MonoBehaviour {
                 ammoTimer = 0;
             }
         } 
-
-        //Debug.Log(ammoTimer);
     }
 
     private void ShooterFixedUpdate()
@@ -295,11 +296,25 @@ public class PlayerControl : MonoBehaviour {
                 nbRapidFireAmmo++;
             }
         }
-        float fireRate = baseFireTime + nbRapidFireAmmo * bonusFireTime;
+        float fireRate = baseFireRate + nbRapidFireAmmo * bonusFireRate;
         float fireTime = 1f / fireRate;
 
         return fireTime;
+    }
 
+    private float GetShootProjectileSpeed()
+    {
+        int nbRapidFireAmmo = 0;
+        foreach (AmmoType type in currentAmmo)
+        {
+            if (type == AmmoType.RAPIDFIRE)
+            {
+                nbRapidFireAmmo++;
+            }
+        }
+        float projectileSpeed = baseProjectileSpeed + nbRapidFireAmmo * bonusProjectileSpeed;
+
+        return projectileSpeed;
     }
 
     private void LoadAmmo(GameObject ammo)

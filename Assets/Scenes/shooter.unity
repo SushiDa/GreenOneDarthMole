@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a65f6d7a2f5c5488cb99d794bab0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
 --- !u!1001 &521241267
 Prefab:
   m_ObjectHideFlags: 0
@@ -581,6 +582,31 @@ Prefab:
     - target: {fileID: 4509086026568566, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
       propertyPath: m_RootOrder
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: baseFireRate
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: bonusFireRate
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: baseProjectileSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: bonusProjectileSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: ControlType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
