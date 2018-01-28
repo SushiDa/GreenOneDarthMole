@@ -119,23 +119,44 @@ public class MaterialFusion : MonoBehaviour {
                     GameObject.Destroy(other2.gameObject);
                     GameObject.Instantiate(Crystal, targetPosition, Quaternion.identity);
 
-                    var hits = Physics2D.CircleCastAll(targetPosition, CircleCastRadius, Vector2.up, CircleCastRadius,LayerMask.GetMask("Material"));
+                    var hits = Physics2D.CircleCastAll(targetPosition, CircleCastRadius, Vector2.up, CircleCastRadius);
 
                     foreach(RaycastHit2D hit in hits)
                     {
-                        Rigidbody2D otherRb = hit.collider.GetComponent<Rigidbody2D>();
-                        if(otherRb != null)
+                        if (hit.collider.tag == "Material")
                         {
-                            otherRb.velocity = (otherRb.transform.position - targetPosition).normalized * CircleCastForce;
+                            Rigidbody2D otherRb = hit.collider.GetComponent<Rigidbody2D>();
+                            if (otherRb != null)
+                            {
+                                otherRb.velocity = (otherRb.transform.position - targetPosition).normalized * CircleCastForce;
+                            }
+                            MaterialFusion otherMat = hit.collider.GetComponent<MaterialFusion>();
+                            if (otherMat != null)
+                            {
+                                otherMat.currentChainCombo = chainCombo + 1;
+                            }
                         }
-                        MaterialFusion otherMat = hit.collider.GetComponent<MaterialFusion>();
-                        if(otherMat != null)
+                        else if(hit.collider.tag == "Mole" && !hit.collider.GetComponent<Hole>().MaterialTriggered)
                         {
-                            otherMat.currentChainCombo = chainCombo + 1;
+                            hit.collider.GetComponent<Hole>().MaterialTriggered = true;
+                            //Spawn resource
+                            int resourceTier = 1;
+                            int angle = Random.Range(0, 360);
+                            float speed = Random.Range(2f, 3f);
+                            GameObject mat = Instantiate(Resources.Load("Prefabs/Material"), hit.collider.transform.position, Quaternion.AngleAxis(angle, Vector3.forward)) as GameObject;
+                            mat.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+                            mat.GetComponent<MaterialFusion>().tier = resourceTier;
+                            mat.GetComponent<MaterialFusion>().canFuse = true;
+                            mat.GetComponent<MaterialFusion>().currentChainCombo = chainCombo + 1;
+
+                        }
+                        else if(hit.collider.tag == "Drill")
+                        {
+                            Destroy(hit.collider.gameObject);
                         }
                     }
-                    
-                    for(int i =0; i < 1+2*chainCombo;i++)
+
+                        for (int i =0; i < 1+2*chainCombo;i++)
                     {
                         GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
                     }

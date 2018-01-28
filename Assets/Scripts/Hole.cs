@@ -14,6 +14,7 @@ public class Hole : MonoBehaviour
     public float DrillSpawnMaxSpeed;
     public float DrillSpawnMinSpeed;
     public float DrillSpawnAngle;
+    public bool MaterialTriggered;
 
     private int maxHp = 3;
 
@@ -23,9 +24,11 @@ public class Hole : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        maxHp = 3;
+        hp = maxHp;
 
         attacTimer = 0;
+
+        MaterialTriggered = false;
     }
 
     // Update is called once per frame
@@ -80,6 +83,7 @@ public class Hole : MonoBehaviour
     public void Pop()
     {
         tag = "Mole";
+        MaterialTriggered = false;
         gameObject.layer = LayerMask.NameToLayer("Mole");
         GetComponent<Animator>().SetBool("hasMole", true);
         hp = maxHp;
