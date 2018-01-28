@@ -597,6 +597,7 @@ GameObject:
   - component: {fileID: 1237626147}
   - component: {fileID: 1237626146}
   - component: {fileID: 1237626145}
+  - component: {fileID: 1237626149}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -667,6 +668,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1237626149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237626144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ee3df7a60150e42af641bf41248b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 0
+  MaxEnergy: 100
+  CurrentEnergy: 80
+  EnergyIncrementPerSecond: 1
+  EnergyPctDecrementPerSecond: 2.5
+  GameOver: 0
+  BaseOverflowTimer: 5
+  OverflowTimerDecrease: 0.5
+  MinOverflowTimer: 1
+  EnergyBaseScore: 1
+  EnergyBaseIncrement: 5
+  OverflowComboMultiplier: 10
+  EnergySlider: {fileID: 0}
+  ScoreText: {fileID: 0}
 --- !u!1001 &1267248005
 Prefab:
   m_ObjectHideFlags: 0
@@ -931,6 +957,24 @@ Prefab:
     - target: {fileID: 4509086026568566, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: GM
+      value: 
+      objectReference: {fileID: 1237626149}
+    - target: {fileID: 114633342995073566, guid: 95ef257c221cf824b977c2f7397303d7,
+        type: 2}
+      propertyPath: ControlType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509086026568566, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509086026568566, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ef257c221cf824b977c2f7397303d7, type: 2}

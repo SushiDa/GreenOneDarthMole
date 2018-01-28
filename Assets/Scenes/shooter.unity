@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 1447813434}
   - component: {fileID: 1447813433}
   - component: {fileID: 1447813437}
+  - component: {fileID: 1447813438}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -485,6 +486,35 @@ MonoBehaviour:
   spawnPeriod: 5
   spawnChance: 0.35
   hideChance: 0.2
+  Tier2SpawnPctScoreMultiplier: 0
+  Tier3SpawnPctScoreMultiplier: 0
+  Tier2Spawn: 0
+  Tier3Spawn: 0
+--- !u!114 &1447813438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1447813432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ee3df7a60150e42af641bf41248b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 0
+  MaxEnergy: 100
+  CurrentEnergy: 80
+  EnergyIncrementPerSecond: 1
+  EnergyPctDecrementPerSecond: 2.5
+  GameOver: 0
+  BaseOverflowTimer: 5
+  OverflowTimerDecrease: 0.5
+  MinOverflowTimer: 1
+  EnergyBaseScore: 1
+  EnergyBaseIncrement: 5
+  OverflowComboMultiplier: 10
+  EnergySlider: {fileID: 0}
+  ScoreText: {fileID: 0}
 --- !u!1001 &1534816128
 Prefab:
   m_ObjectHideFlags: 0

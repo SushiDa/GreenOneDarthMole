@@ -75,7 +75,7 @@ public class Bullet : MonoBehaviour {
         Debug.Log("splash");
         var splash = GameObject.Instantiate(Resources.Load("Prefabs/Explosion"), transform.position + transform.up * 0.1f, Quaternion.identity) as GameObject;
         splash.transform.localScale = new Vector3(0.5f + nbSplash * 0.5f, 0.5f + nbSplash * 0.5f, 1);
-        Destroy(splash, 2f);
+        Destroy(splash, 0.2f);
     }
 
     public void SetProjectileSpeed(float speed)
