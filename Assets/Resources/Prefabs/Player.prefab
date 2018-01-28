@@ -152,7 +152,7 @@ MonoBehaviour:
     freezeRotation: 1
   MatcherPlayerSpeed: 5
   MatcherThrowSpeed: 8
-  MaterialPickupOffset: 0
+  MaterialPickupOffset: 0.25
   thrust: 500
   brakeForce: 125
   turnSpeed: 200

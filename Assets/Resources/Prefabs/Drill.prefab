@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4559726024596068}
   - component: {fileID: 212551244190170576}
-  - component: {fileID: 58137261758486994}
   - component: {fileID: 50776231680813314}
   - component: {fileID: 114987298344878978}
+  - component: {fileID: 70024033935001942}
   m_Layer: 13
   m_Name: Drill
   m_TagString: Drill
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1162139031701004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.1723537, y: -1.0852004, z: 0}
+  m_LocalPosition: {x: -2.9324534, y: 2.1231284, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58137261758486994
-CircleCollider2D:
+--- !u!70 &70024033935001942
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -72,12 +72,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Offset: {x: 0.05, y: 0.21}
+  m_Size: {x: 0.4, y: 0.9}
+  m_Direction: 0
 --- !u!114 &114987298344878978
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4748552641347228}
   - component: {fileID: 212815165001870414}
   - component: {fileID: 58005353392640688}
+  - component: {fileID: 58786284986434366}
   - component: {fileID: 50163321297466682}
   - component: {fileID: 114642243435843380}
-  - component: {fileID: 58786284986434366}
   m_Layer: 12
   m_Name: Material
   m_TagString: Material
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033955029826936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4423997, y: 2.4441493, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalPosition: {x: -1.2949123, y: 2.5382795, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,9 +76,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.05}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 1.1
 --- !u!58 &58786284986434366
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -91,9 +91,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.05}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.5
 --- !u!114 &114642243435843380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 393538945
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 858d16fa44def454c826ba8980f8ee3e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
