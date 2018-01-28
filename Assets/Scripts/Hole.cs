@@ -17,8 +17,10 @@ public class Hole : MonoBehaviour
 
     private int maxHp = 3;
 
-    private float attacPeriod = 3f;
+    private float attacPeriod = 5f;
     private float attacTimer;
+
+    private float stunTimer;
 
     // Use this for initialization
     void Start()
@@ -26,6 +28,7 @@ public class Hole : MonoBehaviour
         maxHp = 3;
 
         attacTimer = 0;
+        stunTimer = 0;
     }
 
     // Update is called once per frame
@@ -37,6 +40,17 @@ public class Hole : MonoBehaviour
             GetComponent<Animator>().SetBool("isAttac", true);
             attacTimer -= attacPeriod;
         }
+
+        if (stunTimer > 0)
+        {
+            stunTimer -= Time.deltaTime;
+        } else
+        {
+            stunTimer = 0;
+            GetComponent<Animator>().SetBool("isStunned", false);
+        }
+
+
 
         if (tag == "Mole")
         {
@@ -84,6 +98,12 @@ public class Hole : MonoBehaviour
         GetComponent<Animator>().SetBool("hasMole", true);
         hp = maxHp;
         attacTimer = 0;
+    }
+
+    public void Stun()
+    {
+        stunTimer = 20f;
+        GetComponent<Animator>().SetBool("isStunned", true);
     }
 
     private void Death()
