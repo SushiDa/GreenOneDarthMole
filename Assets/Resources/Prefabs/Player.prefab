@@ -186,7 +186,7 @@ MonoBehaviour:
   DrillerPlayerSpeed: 3
   HeldDrill: {fileID: 0}
   AimSpriteRenderer: {fileID: 212918561295050328}
-  DrillPickupOffset: 0.1
+  DrillPickupOffset: 0.15
   DrillLaunchSpeed: 5
   DrillLifeTime: 3
 --- !u!212 &212343290365040526
