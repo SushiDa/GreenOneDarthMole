@@ -173,6 +173,8 @@ public class PlayerControl : MonoBehaviour {
     private void MatcherFixedUpdate()
     {
         rb.velocity = currentMovement * MatcherPlayerSpeed;
+        float angle = Mathf.Atan2(latestLookDirection.y, latestLookDirection.x) * Mathf.Rad2Deg - 90;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //Vector2.SmoothDamp(rb.velocity, currentMovement * MatcherPlayerSpeed, ref playerSpeedDamp, 0.02f , MatcherPlayerSpeed, Time.fixedDeltaTime);
     }
 
@@ -260,7 +262,7 @@ public class PlayerControl : MonoBehaviour {
         if(currentMovement.magnitude > 0 && !btn1Held)
         {
             rb.velocity = currentMovement * ShooterPlayerSpeed;
-            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(currentMovement.normalized.y, currentMovement.normalized.x) * 180 / Mathf.PI);
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(latestLookDirection.normalized.y, latestLookDirection.normalized.x) * 180 / Mathf.PI);
         } else
         {
             rb.velocity = Vector2.zero;
@@ -268,7 +270,7 @@ public class PlayerControl : MonoBehaviour {
 
         if (btn1Held)
         {
-            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(currentMovement.normalized.y, currentMovement.normalized.x) * 180 / Mathf.PI);
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(latestLookDirection.normalized.y, latestLookDirection.normalized.x) * 180 / Mathf.PI);
         }
         
     }
@@ -396,7 +398,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void DrillerFixedUpdate()
     {
-        float angle = Mathf.Atan2(currentMovement.y, currentMovement.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(latestLookDirection.y, latestLookDirection.x) * Mathf.Rad2Deg - 90;
        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         if (HeldDrill == null)
         {
@@ -453,7 +455,8 @@ public class PlayerControl : MonoBehaviour {
             col.enabled = true;
         }
         HeldDrill.velocity = this.transform.up * DrillLaunchSpeed;
-        //TO CHANGE
+        HeldDrill.GetComponent<Drill>().Drilling = true;
+        //TO CHANGE ?
         GameObject.Destroy(HeldDrill.gameObject, DrillLifeTime);
         HeldDrill = null;
     }

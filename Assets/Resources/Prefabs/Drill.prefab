@@ -89,6 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8df837f83ee8540ac27f0c83610a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Drilling: 0
+  MaxBounceCount: 3
+  tier: 1
+  AmmoPrefab: {fileID: 1033955029826936, guid: af2fef43c07b16b41b77e048c42ecf31, type: 2}
 --- !u!212 &212551244190170576
 SpriteRenderer:
   m_ObjectHideFlags: 1

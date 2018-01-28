@@ -5,11 +5,12 @@ using UnityEngine;
 public class Crystal : MonoBehaviour {
 
     private int hp;
+    public int tier = 1;
 
     // Use this for initialization
     void Start()
     {
-        hp = 3;
+        hp = tier*3;
     }
 
     // Update is called once per frame
@@ -18,12 +19,15 @@ public class Crystal : MonoBehaviour {
 
     }
 
-    public void TakeDamage()
+    public bool TakeDamage(int damage)
     {
-        hp--;
+        bool alive = true;
+        hp-=damage;
         if (hp <= 0)
         {
+            alive = false;
             Destroy(gameObject);
         }
+        return alive;
     }
 }
