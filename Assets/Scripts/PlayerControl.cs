@@ -499,6 +499,9 @@ public class PlayerControl : MonoBehaviour {
                     case "Corpse":
                         SpawnMaterial(other.gameObject);
                         break;
+                    case "Ammo":
+                        Destroy(other.gameObject);
+                        break;
 
                 }
                 break;
