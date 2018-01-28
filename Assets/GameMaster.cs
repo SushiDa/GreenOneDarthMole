@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
 
@@ -81,6 +82,7 @@ public class GameMaster : MonoBehaviour {
     {
         GameOver = true;
         PreviousScore = Score;
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
     
 }

@@ -1640,7 +1640,7 @@ MonoBehaviour:
   MaxEnergy: 100
   CurrentEnergy: 80
   EnergyIncrementPerSecond: 1
-  EnergyPctDecrementPerSecond: 1
+  EnergyPctDecrementPerSecond: 20
   GameOver: 0
   BaseOverflowTimer: 5
   OverflowTimerDecrease: 0.5

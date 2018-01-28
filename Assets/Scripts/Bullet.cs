@@ -42,6 +42,11 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        if (other.tag == "GlobalWall")
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     public void SetProjectileSpeed(float speed)
