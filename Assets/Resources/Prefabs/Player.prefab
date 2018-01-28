@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 50772052581881096}
   - component: {fileID: 58618109964976890}
   - component: {fileID: 114633342995073566}
+  - component: {fileID: 95550897133850896}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -108,6 +109,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!95 &95550897133850896
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452376906786512}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 101cfe65b72e3d047b4760a8d4cd792d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114633342995073566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e1df7ff84aaf84aaafb6bce2f9bca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GM: {fileID: 0}
   PlayerNumber: 1
   ControlType: 3
   rigidbodyParams:
@@ -205,7 +224,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ed7de28d41f22a44d9578b0c790fec7c, type: 3}
-  m_Color: {r: 0, g: 0.17241383, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
