@@ -16,6 +16,8 @@ public class SpawnMole : MonoBehaviour {
 
     private float randomOffsetFactor = 2f;
 
+    private int maxNewMole = 2;
+
     private float timer;
 
 
@@ -90,6 +92,11 @@ public class SpawnMole : MonoBehaviour {
             {
                 newCount = spawnCount - availableHoles.Count;
                 spawnCount = availableHoles.Count;
+
+                if (newCount > maxNewMole)
+                {
+                    newCount = maxNewMole;
+                }
             }
 
 

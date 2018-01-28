@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPeriod: 5
-  spawnChance: 0.25
+  spawnChance: 0.35
   hideChance: 0.2
 --- !u!1001 &1534816128
 Prefab:
