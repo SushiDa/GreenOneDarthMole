@@ -253,6 +253,7 @@ public class PlayerControl : MonoBehaviour {
                     var angleOffset = -totalAngle / 2 + i * 10;
                     var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, Quaternion.Euler(new Vector3(0, 0, transform.rotation.eulerAngles.z + 90f + angleOffset))) as GameObject;
                     bullet.GetComponent<Bullet>().SetProjectileSpeed(GetShootProjectileSpeed());
+                    bullet.GetComponent<Bullet>().SetNbSplash(GetShootNbSplash());
                 }
                 shootTimer -= GetShootFireTime();
             }
@@ -343,6 +344,20 @@ public class PlayerControl : MonoBehaviour {
         float projectileSpeed = baseProjectileSpeed + nbRapidFireAmmo * bonusProjectileSpeed;
 
         return projectileSpeed;
+    }
+
+    private int GetShootNbSplash()
+    {
+        int nbSplashAmmo = 0;
+        foreach (AmmoType type in currentAmmo)
+        {
+            if (type == AmmoType.RAPIDFIRE)
+            {
+                nbSplashAmmo++;
+            }
+        }
+
+        return nbSplashAmmo;
     }
 
     private void LoadAmmo(GameObject ammo)

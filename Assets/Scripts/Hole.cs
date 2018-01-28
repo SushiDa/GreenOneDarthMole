@@ -92,6 +92,7 @@ public class Hole : MonoBehaviour
 
     public bool TakeDamage()
     {
+        Debug.Log("takeDamage");
         bool alive = true;
         hp--;
         if (hp <= 0)
