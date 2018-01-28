@@ -369,6 +369,8 @@ public class PlayerControl : MonoBehaviour {
         float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         rb.velocity = Vector2.zero;
+
+        mole.GetComponent<Hole>().Stun();
     }
     
 
