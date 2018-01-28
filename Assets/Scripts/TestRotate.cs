@@ -27,7 +27,7 @@ public class TestRotate : MonoBehaviour {
 
         startAngle = transform.rotation.eulerAngles.z;
         currentAngle = startAngle;
-        timer = -30f; //temps avant la première
+        timer = -15f; //temps avant la première
     }
 	
 	// Update is called once per frame
