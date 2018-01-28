@@ -256,14 +256,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1033955029826936, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_Name
       value: HoleTmp (2)
@@ -401,6 +393,14 @@ Prefab:
     - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033955029826936, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
+      propertyPath: m_TagString
+      value: Mole
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033955029826936, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
@@ -624,14 +624,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1033955029826936, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_Name
       value: HoleTmp (1)
@@ -678,14 +670,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1033955029826936, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_Name
       value: HoleTmp (5)
@@ -731,14 +715,6 @@ Prefab:
     - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1033955029826936, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_Name
@@ -831,14 +807,6 @@ Prefab:
     - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4748552641347228, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1033955029826936, guid: 312809b8857e5214f9db3e3d191ced6a, type: 2}
       propertyPath: m_Name
