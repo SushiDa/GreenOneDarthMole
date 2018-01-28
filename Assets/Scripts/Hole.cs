@@ -15,21 +15,47 @@ public class Hole : MonoBehaviour
     public float DrillSpawnMinSpeed;
     public float DrillSpawnAngle;
 
+    private int maxHp = 3;
+    private bool dead = false;
+
+    private float attacPeriod = 3f;
+    private float attacTimer;
+
     // Use this for initialization
     void Start()
     {
-        hp = 3;
+        maxHp = 3;
+
+        attacTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        attacTimer += Time.deltaTime;
+        if (attacTimer > attacPeriod)
+        {
+            GetComponent<Animator>().SetBool("isAttac", true);
+            attacTimer -= attacPeriod;
+        }
+
         if (tag == "Mole")
         {
             GetComponent<Animator>().SetBool("hasMole", true);
         } else
         {
             GetComponent<Animator>().SetBool("hasMole", false);
+        }
+
+        
+        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            GetComponent<Animator>().SetBool("isDead", false);
+        }
+
+        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attac"))
+        {
+            GetComponent<Animator>().SetBool("isAttac", false);
         }
     }
 
@@ -57,6 +83,8 @@ public class Hole : MonoBehaviour
         tag = "Mole";
         gameObject.layer = LayerMask.NameToLayer("Mole");
         GetComponent<Animator>().SetBool("hasMole", true);
+        hp = maxHp;
+        attacTimer = 0;
     }
 
     private void Death()
@@ -64,6 +92,8 @@ public class Hole : MonoBehaviour
         tag = "Hole";
         gameObject.layer = LayerMask.NameToLayer("Hole");
         GetComponent<Animator>().SetBool("hasMole", false);
+        GetComponent<Animator>().SetBool("isDead", true);
+        dead = true;
 
     }
 
