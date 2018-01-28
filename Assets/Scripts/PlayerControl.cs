@@ -353,6 +353,9 @@ public class PlayerControl : MonoBehaviour {
         }
 
         rb.MoveRotation(rb.rotation - Time.fixedDeltaTime * turnSpeed * currentMovement.x);
+
+        gameObject.GetComponent<Animator>().SetFloat("mouvementX", transform.up.x);
+        gameObject.GetComponent<Animator>().SetFloat("mouvementY", transform.up.y);
     }
 
     private void DrillStun(GameObject drill)
@@ -371,6 +374,8 @@ public class PlayerControl : MonoBehaviour {
         rb.velocity = Vector2.zero;
 
         mole.GetComponent<Hole>().Stun();
+        gameObject.GetComponent<Animator>().SetFloat("mouvementX", transform.up.x);
+        gameObject.GetComponent<Animator>().SetFloat("mouvementY", transform.up.y);
     }
     
 
@@ -499,6 +504,9 @@ public class PlayerControl : MonoBehaviour {
                         break;
                     case "Corpse":
                         SpawnMaterial(other.gameObject);
+                        break;
+                    case "Ammo":
+                        Destroy(other.gameObject);
                         break;
 
                 }
