@@ -268,7 +268,7 @@ public class PlayerControl : MonoBehaviour {
             rb.velocity = Vector2.zero;
         }
 
-        if (btn1Held)
+        if (btn1Held && currentMovement.magnitude > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(latestLookDirection.normalized.y, latestLookDirection.normalized.x) * 180 / Mathf.PI);
         }

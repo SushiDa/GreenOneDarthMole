@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4601871765674684}
   - component: {fileID: 212904978830616052}
   - component: {fileID: 58178478847480464}
+  - component: {fileID: 114928855233239496}
   m_Layer: 16
   m_Name: Crystal
   m_TagString: Crystal
@@ -56,6 +57,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.390625
+--- !u!114 &114928855233239496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1833757455706214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a65f6d7a2f5c5488cb99d794bab0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212904978830616052
 SpriteRenderer:
   m_ObjectHideFlags: 1
