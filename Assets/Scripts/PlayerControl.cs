@@ -118,6 +118,12 @@ public class PlayerControl : MonoBehaviour {
         btn2Down = getBtnDown("B");
         btn2Up = getBtnUp("B");
         btn2Held = getBtn("B");
+        
+        if(getBtnDown("Y"))
+        {
+            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().Play();
+        }
 
         switch (ControlType)
         {
