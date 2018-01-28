@@ -106,17 +106,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiersAndColors:
-  - tier: 0
+  - tier: 1
     sprite: {fileID: 21300000, guid: 858d16fa44def454c826ba8980f8ee3e, type: 3}
-  - tier: 0
+  - tier: 1
     sprite: {fileID: 21300000, guid: f5bd9217f403da74aaf330ac7536a6f5, type: 3}
-  - tier: 1
+  - tier: 2
     sprite: {fileID: 21300000, guid: 045aa52b6fb9f614bb04c132dd96772c, type: 3}
-  - tier: 1
+  - tier: 2
     sprite: {fileID: 21300000, guid: 38dd3e659cdc73449b31d63546613d31, type: 3}
-  - tier: 2
+  - tier: 3
     sprite: {fileID: 21300000, guid: 44fb95b6d1312524fa446686f695c3b3, type: 3}
-  - tier: 2
+  - tier: 3
     sprite: {fileID: 21300000, guid: e420b252fc792ef47a1724e4534c1c63, type: 3}
   detectWaitTime: 0.5
   canFuse: 1
@@ -124,6 +124,7 @@ MonoBehaviour:
   tier: 0
   Crystal: {fileID: 1833757455706214, guid: 24fd879cd0d20e4449a424c80455e039, type: 2}
   AuraCollider: {fileID: 58005353392640688}
+  currentChainCombo: 1
   CircleCastRadius: 0.5
   CircleCastForce: 10
 --- !u!212 &212815165001870414

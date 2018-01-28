@@ -119,8 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203acb4cb639f3a44b5ddddbe78bcdaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodPrefab: {fileID: 1033955029826936, guid: 7579bb3d3e49f3144976785b34f520c9,
-    type: 2}
 --- !u!114 &114120569955189142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50512df2fc8a12d4db71b7bb70fe3b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
 --- !u!212 &212733694013410980
 SpriteRenderer:
   m_ObjectHideFlags: 1

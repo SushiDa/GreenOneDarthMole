@@ -1455,6 +1455,10 @@ MonoBehaviour:
   spawnPeriod: 5
   spawnChance: 0.25
   hideChance: 0.2
+  Tier2SpawnPctScoreMultiplier: 20
+  Tier3SpawnPctScoreMultiplier: 5
+  Tier2Spawn: 0
+  Tier3Spawn: 0
 --- !u!114 &370405626
 MonoBehaviour:
   m_ObjectHideFlags: 0

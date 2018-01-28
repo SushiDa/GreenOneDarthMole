@@ -117,7 +117,8 @@ public class MaterialFusion : MonoBehaviour {
 
                     GameObject.Destroy(other1.gameObject);
                     GameObject.Destroy(other2.gameObject);
-                    GameObject.Instantiate(Crystal, targetPosition, Quaternion.identity);
+                    GameObject crystal = GameObject.Instantiate(Crystal, targetPosition, Quaternion.identity) as GameObject;
+                    crystal.GetComponent<Crystal>().tier = tier;
 
                     var hits = Physics2D.CircleCastAll(targetPosition, CircleCastRadius, Vector2.up, CircleCastRadius);
 
@@ -140,7 +141,7 @@ public class MaterialFusion : MonoBehaviour {
                         {
                             hit.collider.GetComponent<Hole>().MaterialTriggered = true;
                             //Spawn resource
-                            int resourceTier = 1;
+                            int resourceTier = hit.collider.GetComponent<Hole>().tier;
                             int angle = Random.Range(0, 360);
                             float speed = Random.Range(2f, 3f);
                             GameObject mat = Instantiate(Resources.Load("Prefabs/Material"), hit.collider.transform.position, Quaternion.AngleAxis(angle, Vector3.forward)) as GameObject;
@@ -156,7 +157,7 @@ public class MaterialFusion : MonoBehaviour {
                         }
                     }
 
-                        for (int i =0; i < 1+2*chainCombo;i++)
+                        for (int i =0; i < 1+2*chainCombo * tier;i++)
                     {
                         GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
                     }

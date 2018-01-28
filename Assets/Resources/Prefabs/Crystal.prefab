@@ -85,6 +85,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tier: 1
+  tierSprites:
+  - {fileID: 21300000, guid: 772c2a3cb3b406240b2c19ed83b2125b, type: 3}
+  - {fileID: 21300000, guid: 351d9fe14ee699a45901344c16434204, type: 3}
+  - {fileID: 21300000, guid: 18ca11ea972251e4193814314260ebd6, type: 3}
 --- !u!212 &212904978830616052
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -117,7 +121,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 943784635
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 772c2a3cb3b406240b2c19ed83b2125b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

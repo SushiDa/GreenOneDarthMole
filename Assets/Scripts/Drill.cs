@@ -20,6 +20,21 @@ public class Drill : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (tier == 1)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else if (tier == 2)
+        {
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        else if (tier == 3)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
+
         if (rb.velocity.magnitude == 0)
         {
             GetComponent<Collider2D>().isTrigger = true;
@@ -83,13 +98,14 @@ public class Drill : MonoBehaviour {
                 if(spawnAmmo)
                 {
                     
-                    for (int i = 0; i < 1+2*comboCount; i++)
+                    for (int i = 0; i < 1+2*(comboCount+tier); i++)
                     {
                         GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
                     }
 
                     comboCount++;
-                    GameObject.Instantiate(AmmoPrefab, collision.transform.position, Quaternion.identity);
+                    GameObject ammo = GameObject.Instantiate(AmmoPrefab, collision.transform.position, Quaternion.identity);
+                    //ammo.GetComponent<Ammo>();
                 }
                 else
                 {

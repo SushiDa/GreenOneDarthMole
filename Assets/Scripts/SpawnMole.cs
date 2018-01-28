@@ -8,7 +8,7 @@ public class SpawnMole : MonoBehaviour {
     public float spawnPeriod;
     public float spawnChance;
     public float hideChance;
-    
+
     private float maxx = 9f;
     private float maxy = 5f;
     private float emptyRadius = 1.5f;
@@ -18,17 +18,41 @@ public class SpawnMole : MonoBehaviour {
     private int maxNewMole = 2;
 
     private float timer;
+    private GameMaster GM;
+
+    public float Tier2SpawnPctScoreMultiplier;
+    public float Tier3SpawnPctScoreMultiplier;
+
+    private float Tier1Spawn = 100f;
+    [SerializeField]
+    private float Tier2Spawn = 0f;
+    [SerializeField]
+    private float Tier3Spawn = 0f;
 
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         timer = 0;
-	}
+        GM = GameObject.FindObjectOfType<GameMaster>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
+
+        if(Tier2Spawn < 100)
+        {
+            Tier2Spawn +=  GM.CurrentEnergy * Tier2SpawnPctScoreMultiplier * Time.deltaTime / 10000;
+            if (Tier2Spawn >= 100)
+                Tier2Spawn = 100;
+        }
+
+        if(Tier3Spawn < 100)
+        {
+            Tier3Spawn += GM.CurrentEnergy * Tier3SpawnPctScoreMultiplier * Time.deltaTime / 10000;
+            if (Tier3Spawn >= 100)
+                Tier3Spawn = 100;
+        }
 
         if (timer >= spawnPeriod)
         {
@@ -162,6 +186,23 @@ public class SpawnMole : MonoBehaviour {
     IEnumerator SpawnExistingMoleCoroutine(GameObject mole)
     {
         yield return new WaitForSeconds(1);
+
+        //tier random
+        float tier2Pct = Tier2Spawn / (Tier2Spawn + Tier1Spawn + Tier3Spawn);
+        float tier3Pct = Tier3Spawn / (Tier2Spawn + Tier1Spawn + Tier3Spawn);
+
+        float value = Random.Range(0f, 1f);
+        int resultTier = 1;
+        if(value < tier2Pct)
+        {
+            resultTier = 2;
+        }
+        else if(value < tier2Pct + tier3Pct)
+        {
+            resultTier = 3;
+        }
+
+        mole.GetComponent<Hole>().tier = resultTier;
         mole.GetComponent<Hole>().Pop();
     }
 }

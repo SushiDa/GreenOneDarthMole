@@ -376,6 +376,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void SpawnMaterial(GameObject corpse)
     {
+        int corpseTier = corpse.GetComponent<Corpse>().tier;
         for(int i = 0; i < nbSpawnMaterial; i++)
         {
             var randomOffset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
@@ -393,11 +394,11 @@ public class PlayerControl : MonoBehaviour {
                 spawner.GetComponent<Spawner>().item = "Material";
 
                 //TODO récupérer le bon tier
-                spawner.GetComponent<Spawner>().tier = 1;
+                spawner.GetComponent<Spawner>().tier = corpseTier;
             }
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3 + corpseTier; i++)
         {
             GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
         }

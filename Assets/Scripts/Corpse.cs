@@ -5,6 +5,7 @@ using UnityEngine;
 public class Corpse : MonoBehaviour {
 
     Rigidbody2D rb;
+    public int tier;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -12,6 +13,20 @@ public class Corpse : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (tier == 1)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else if (tier == 2)
+        {
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        else if (tier == 3)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
 
         if (rb.velocity.magnitude == 0)
         {

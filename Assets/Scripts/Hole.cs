@@ -16,7 +16,10 @@ public class Hole : MonoBehaviour
     public float DrillSpawnAngle;
     public bool MaterialTriggered;
 
-    private int maxHp = 3;
+    public int tier;
+
+    public int BaseHp = 1;
+    public int TierMultiplier = 3;
 
     private float attacPeriod = 5f;
     private float attacTimer;
@@ -26,7 +29,7 @@ public class Hole : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        hp = maxHp;
+        hp = BaseHp + tier * TierMultiplier;
 
         attacTimer = 0;
         MaterialTriggered = false;
@@ -36,6 +39,19 @@ public class Hole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(tier == 1)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else if (tier == 2)
+        {
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        else if (tier == 3)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
         attacTimer += Time.deltaTime;
         if (attacTimer > attacPeriod)
         {
@@ -99,7 +115,7 @@ public class Hole : MonoBehaviour
         MaterialTriggered = false;
         gameObject.layer = LayerMask.NameToLayer("Mole");
         GetComponent<Animator>().SetBool("hasMole", true);
-        hp = maxHp;
+        hp = BaseHp + tier * TierMultiplier;
         attacTimer = 0;
     }
 
@@ -130,6 +146,7 @@ public class Hole : MonoBehaviour
         drill.GetComponent<Collider2D>().isTrigger = false;
         drill.GetComponent<Rigidbody2D>().angularDrag = 5;
         drill.GetComponent<Rigidbody2D>().AddTorque(0.5f, ForceMode2D.Impulse);
+        drill.GetComponent<Drill>().tier = tier;
 
         float ranAngleCorpse = Random.Range(-CorpseSpawnAngle, CorpseSpawnAngle);
         float ranSpeedCorpse= Random.Range(CorpseSpawnMinSpeed, CorpseSpawnMaxSpeed);
@@ -140,8 +157,9 @@ public class Hole : MonoBehaviour
         corpse.GetComponent<Collider2D>().isTrigger = false;
         corpse.GetComponent<Rigidbody2D>().angularDrag = 5;
         corpse.GetComponent<Rigidbody2D>().AddTorque(1200, ForceMode2D.Impulse);
+        corpse.GetComponent<Corpse>().tier = tier;
 
-        for(int i=0; i<3;i++)
+        for(int i=0; i<3*tier;i++)
         {
             GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
         }
