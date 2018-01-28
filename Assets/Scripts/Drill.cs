@@ -44,14 +44,17 @@ public class Drill : MonoBehaviour {
                 BounceCount++;
             }
 
-            if(collision.tag == "Mole")
+            if (collision.tag == "Mole")
             {
-                //TODO Stun Mole ?
-
                 GameObject.Destroy(this.gameObject);
             }
 
-            if(collision.tag == "Crystal")
+            if (collision.tag == "Corpse")
+            {
+                GameObject.Destroy(collision.gameObject);
+            }
+
+            if (collision.tag == "Crystal")
             {
                 //TODO Damage Crystal
                 var crystal = collision.GetComponent<Crystal>();
