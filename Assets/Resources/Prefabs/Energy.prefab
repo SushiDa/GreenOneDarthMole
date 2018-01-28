@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivationTime: 1
   MinSpawnSpeed: 3
-  MaxSpawnSpeed: 10
+  MaxSpawnSpeed: 6
   LifeSpan: 5
 --- !u!212 &212345008384682310
 SpriteRenderer:

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
 
+    public GameMaster GM;
     public int PlayerNumber;
 
     public PlayerControlType ControlType;
-
+    
     private Dictionary<string, string> controlMapping;
     private bool ps4;
 
@@ -87,6 +88,7 @@ public class PlayerControl : MonoBehaviour {
     }
     
     void Start () {
+        GM = GameObject.FindObjectOfType<GameMaster>();
         rb = GetComponent<Rigidbody2D>();
         ChangeControlType(ControlType);
         ps4 = false;
@@ -512,8 +514,9 @@ public class PlayerControl : MonoBehaviour {
 
         if(other.gameObject.tag == "Energy")
         {
-            //Score
-
+            //
+            if(GM != null)
+                GM.DoScore();
             //Play PickupSound
             Destroy(other.gameObject);
         }
