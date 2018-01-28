@@ -106,11 +106,11 @@ MonoBehaviour:
     type: 2}
   DrillPrefab: {fileID: 1162139031701004, guid: 830df844406ec694f944b75e566137ae,
     type: 2}
-  CorpseSpawnMaxSpeed: 3
-  CorpseSpawnMinSpeed: 7
+  CorpseSpawnMaxSpeed: 10
+  CorpseSpawnMinSpeed: 5
   CorpseSpawnAngle: 60
   DrillSpawnMaxSpeed: 2
-  DrillSpawnMinSpeed: 10
+  DrillSpawnMinSpeed: 1
   DrillSpawnAngle: 45
 --- !u!212 &212815165001870414
 SpriteRenderer:

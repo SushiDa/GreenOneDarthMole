@@ -108,6 +108,7 @@ public class Hole : MonoBehaviour
         drill.GetComponent<Rigidbody2D>().velocity = drill.transform.up * ranSpeedDrill;
         drill.GetComponent<Collider2D>().isTrigger = false;
         drill.GetComponent<Rigidbody2D>().angularDrag = 5;
+        drill.GetComponent<Rigidbody2D>().AddTorque(0.5f, ForceMode2D.Impulse);
 
         float ranAngleCorpse = Random.Range(-CorpseSpawnAngle, CorpseSpawnAngle);
         float ranSpeedCorpse= Random.Range(CorpseSpawnMinSpeed, CorpseSpawnMaxSpeed);
@@ -117,6 +118,7 @@ public class Hole : MonoBehaviour
         corpse.GetComponent<Rigidbody2D>().velocity = corpse.transform.up * ranSpeedCorpse;
         corpse.GetComponent<Collider2D>().isTrigger = false;
         corpse.GetComponent<Rigidbody2D>().angularDrag = 5;
+        corpse.GetComponent<Rigidbody2D>().AddTorque(1200, ForceMode2D.Impulse);
     }
     
 }
