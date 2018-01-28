@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += transform.up * projectileSpeed;
+        transform.position += transform.right * projectileSpeed;
 
         timer += Time.deltaTime;
         if (timer > projectileLifeTime)

@@ -240,7 +240,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (shootTimer > 0)
             {
-                var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, transform.rotation) as GameObject;
+                var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, Quaternion.Euler(new Vector3(0,0,transform.rotation.eulerAngles.z + 90f))) as GameObject;
                 bullet.GetComponent<Bullet>().SetProjectileSpeed(GetShootProjectileSpeed());
                 shootTimer -= GetShootFireTime();
             }
