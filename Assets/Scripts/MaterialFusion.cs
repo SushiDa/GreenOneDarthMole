@@ -8,7 +8,7 @@ public class MaterialFusion : MonoBehaviour {
     public struct TierColor
     {
         public int tier;
-        public Color color;
+        public Sprite sprite;
     }
     public TierColor[] tiersAndColors;
 
@@ -52,7 +52,7 @@ public class MaterialFusion : MonoBehaviour {
             result = tiersAndColors[resourceType];
         }
 
-        GetComponent<SpriteRenderer>().color = result.color;
+        GetComponent<SpriteRenderer>().sprite = result.sprite;
         tier = result.tier;
     }
 	
