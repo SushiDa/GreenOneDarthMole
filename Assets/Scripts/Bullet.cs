@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-    public float projectileSpeed;
+    private float projectileSpeed;
     public float projectileLifeTime;
 
     private float timer;
@@ -42,5 +42,10 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject);
         }
 
+    }
+
+    public void SetProjectileSpeed(float speed)
+    {
+        projectileSpeed = speed;
     }
 }
