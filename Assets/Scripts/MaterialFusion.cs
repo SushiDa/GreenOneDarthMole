@@ -18,13 +18,17 @@ public class MaterialFusion : MonoBehaviour {
     public int tier = 0;
     public GameObject Crystal;
     public Collider2D AuraCollider;
-
+    public int currentChainCombo = 1;
 
     public float CircleCastRadius;
     public float CircleCastForce;
 
-	// Use this for initialization
-	void Start () {
+
+    private Rigidbody2D rb;
+
+    // Use this for initialization
+    void Start () {
+        rb = GetComponent<Rigidbody2D>();
         StartCoroutine("DetectOthers");
 
 
@@ -58,7 +62,10 @@ public class MaterialFusion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(rb.velocity.magnitude == 0)
+        {
+            currentChainCombo = 1;
+        }
 	}
 
     IEnumerator DetectOthers()
@@ -99,6 +106,8 @@ public class MaterialFusion : MonoBehaviour {
 
                 if(other1 != null && other1.canFuse && other2 != null && other2.canFuse)
                 {
+                    int chainCombo = Mathf.Max(other1.currentChainCombo, other2.currentChainCombo, currentChainCombo);
+
                     other1.canFuse = false;
                     other2.canFuse = false;
                     this.canFuse = false;
@@ -119,8 +128,17 @@ public class MaterialFusion : MonoBehaviour {
                         {
                             otherRb.velocity = (otherRb.transform.position - targetPosition).normalized * CircleCastForce;
                         }
+                        MaterialFusion otherMat = hit.collider.GetComponent<MaterialFusion>();
+                        if(otherMat != null)
+                        {
+                            otherMat.currentChainCombo = chainCombo + 1;
+                        }
                     }
                     
+                    for(int i =0; i < 1+2*chainCombo;i++)
+                    {
+                        GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
+                    }
 
 
                     GameObject.Destroy(this.gameObject);

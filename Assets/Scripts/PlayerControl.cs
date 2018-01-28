@@ -392,6 +392,12 @@ public class PlayerControl : MonoBehaviour {
                 spawner.GetComponent<Spawner>().tier = 1;
             }
         }
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
+        }
+
         Destroy(corpse);
     }
 
@@ -502,6 +508,14 @@ public class PlayerControl : MonoBehaviour {
                 break;
             default:
                 break;
+        }
+
+        if(other.gameObject.tag == "Energy")
+        {
+            //Score
+
+            //Play PickupSound
+            Destroy(other.gameObject);
         }
     }
 

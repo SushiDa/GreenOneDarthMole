@@ -10,6 +10,8 @@ public class Drill : MonoBehaviour {
     private int BounceCount;
     public int tier = 1;
     public GameObject AmmoPrefab;
+
+    public int comboCount = 1;
     // Use this for initialization
     void Start () {
         Drilling = false;
@@ -76,6 +78,13 @@ public class Drill : MonoBehaviour {
 
                 if(spawnAmmo)
                 {
+                    
+                    for (int i = 0; i < 1+2*comboCount; i++)
+                    {
+                        GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Energy"), transform.position, Quaternion.identity);
+                    }
+
+                    comboCount++;
                     GameObject.Instantiate(AmmoPrefab, collision.transform.position, Quaternion.identity);
                 }
                 else
