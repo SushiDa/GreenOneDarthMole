@@ -16,7 +16,6 @@ public class Hole : MonoBehaviour
     public float DrillSpawnAngle;
 
     private int maxHp = 3;
-    private bool dead = false;
 
     private float attacPeriod = 3f;
     private float attacTimer;
@@ -93,7 +92,6 @@ public class Hole : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Hole");
         GetComponent<Animator>().SetBool("hasMole", false);
         GetComponent<Animator>().SetBool("isDead", true);
-        dead = true;
 
     }
 
