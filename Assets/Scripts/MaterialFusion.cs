@@ -15,7 +15,7 @@ public class MaterialFusion : MonoBehaviour {
     public float detectWaitTime;
     public bool canFuse = true;
     public int resourceType = -1;
-    public int tier = 0;
+    public int tier = 1;
     public GameObject Crystal;
     public Collider2D AuraCollider;
     public int currentChainCombo = 1;
@@ -42,13 +42,12 @@ public class MaterialFusion : MonoBehaviour {
 
             if (filtered.Count > 0)
             {
-                resourceType = Random.Range(0, filtered.Count);
+                result = filtered[Random.Range(0, filtered.Count)];
             }
             else
             {
-                resourceType = 0;
+                result = tiersAndColors[0];
             }
-            result = tiersAndColors[resourceType];
         }
         else
         {
