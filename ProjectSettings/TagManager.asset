@@ -52,12 +52,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
-    uniqueID: 3522259193
-    locked: 0
   - name: Zones
     uniqueID: 3251467455
     locked: 0
+  - name: Elements
+    uniqueID: 943784635
+    locked: 0
   - name: Players
     uniqueID: 393538945
+    locked: 0
+  - name: Foreground
+    uniqueID: 3522259193
     locked: 0
