@@ -8,11 +8,10 @@ public class SpawnMole : MonoBehaviour {
     public float spawnPeriod;
     public float spawnChance;
     public float hideChance;
-
-    private float minx = -9f;
+    
     private float maxx = 9f;
-    private float miny = -5f;
     private float maxy = 5f;
+    private float emptyRadius = 1.5f;
 
     private float randomOffsetFactor = 2f;
 
@@ -151,7 +150,11 @@ public class SpawnMole : MonoBehaviour {
     IEnumerator SpawnNewMoleCoroutine()
     {
         yield return new WaitForSeconds(1);
-        var mole = GameObject.Instantiate(Resources.Load("Prefabs/HoleTmp"), new Vector3(Random.Range(minx, maxx), Random.Range(miny, maxy), 0), Quaternion.identity) as GameObject;
+        var x = Random.Range(emptyRadius, maxx);
+        var y = Random.Range(emptyRadius, maxy);
+        x = x * Mathf.Sign(Random.Range(-1f, 1f));
+        y = y * Mathf.Sign(Random.Range(-1f, 1f));
+        var mole = GameObject.Instantiate(Resources.Load("Prefabs/HoleTmp"), new Vector3(x, y, 0), Quaternion.identity) as GameObject;
         mole.tag = "Mole";
         mole.layer = LayerMask.NameToLayer("Mole");
     }
