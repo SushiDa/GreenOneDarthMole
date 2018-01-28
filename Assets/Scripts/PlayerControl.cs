@@ -250,8 +250,15 @@ public class PlayerControl : MonoBehaviour {
             {
 
                 CameraSFXPlayer.PlayClip("SHOOT FIRE");
-                var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, Quaternion.Euler(new Vector3(0,0,transform.rotation.eulerAngles.z + 90f))) as GameObject;
-                bullet.GetComponent<Bullet>().SetProjectileSpeed(GetShootProjectileSpeed());
+                int nbShot = GetNbShot();
+                float totalAngle = nbShot * 10;
+                for (int i = 0; i < nbShot; i++)
+                {
+                    var angleOffset = -totalAngle / 2 + i * 10;
+                    var bullet = GameObject.Instantiate(Resources.Load("Prefabs/ProjectileTmp"), transform.position + transform.up * 0.5f, Quaternion.Euler(new Vector3(0, 0, transform.rotation.eulerAngles.z + 90f + angleOffset))) as GameObject;
+                    bullet.GetComponent<Bullet>().SetProjectileSpeed(GetShootProjectileSpeed());
+                    bullet.GetComponent<Bullet>().SetNbSplash(GetShootNbSplash());
+                }
                 shootTimer -= GetShootFireTime();
             }
 
@@ -314,6 +321,20 @@ public class PlayerControl : MonoBehaviour {
         return fireTime;
     }
 
+    private int GetNbShot()
+    {
+        int nbMultiShotAmmo = 0;
+        foreach (AmmoType type in currentAmmo)
+        {
+            if (type == AmmoType.MULTISHOT)
+            {
+                nbMultiShotAmmo++;
+            }
+        }
+
+        return 1 + nbMultiShotAmmo * 2;
+    }
+
     private float GetShootProjectileSpeed()
     {
         int nbRapidFireAmmo = 0;
@@ -327,6 +348,20 @@ public class PlayerControl : MonoBehaviour {
         float projectileSpeed = baseProjectileSpeed + nbRapidFireAmmo * bonusProjectileSpeed;
 
         return projectileSpeed;
+    }
+
+    private int GetShootNbSplash()
+    {
+        int nbSplashAmmo = 0;
+        foreach (AmmoType type in currentAmmo)
+        {
+            if (type == AmmoType.RAPIDFIRE)
+            {
+                nbSplashAmmo++;
+            }
+        }
+
+        return nbSplashAmmo;
     }
 
     private void LoadAmmo(GameObject ammo)

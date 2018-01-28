@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 4748552641347228}
   - component: {fileID: 212815165001870414}
   - component: {fileID: 58005353392640688}
-  - component: {fileID: 114227521447593800}
-  - component: {fileID: 95413440140793822}
-  - component: {fileID: 58722847740506084}
-  m_Layer: 17
-  m_Name: HoleTmp
-  m_TagString: Hole
+  - component: {fileID: 50378738907963562}
+  - component: {fileID: 95786617976879376}
+  - component: {fileID: 114045262851452066}
+  m_Layer: 20
+  m_Name: Explosion
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,13 +37,33 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033955029826936}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.02, y: 2.24, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50378738907963562
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1033955029826936}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58005353392640688
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -53,28 +73,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.21}
-  serializedVersion: 2
-  m_Radius: 0.28
---- !u!58 &58722847740506084
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1033955029826936}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.21}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.28
---- !u!95 &95413440140793822
+  m_Radius: 0.5
+--- !u!95 &95786617976879376
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -83,7 +88,7 @@ Animator:
   m_GameObject: {fileID: 1033955029826936}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 861c75692d78b484a9c4ca76dd5e8c83, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -91,7 +96,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114227521447593800
+--- !u!114 &114045262851452066
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,20 +104,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1033955029826936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7be7bf3ed8e0a92469ae522bbfd92f06, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de20a43e2da16f46a6a0dce94c45796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CorpsePrefab: {fileID: 1558443262341724, guid: 2d379f26b778d8d41bbbe1120cb5b228,
-    type: 2}
-  DrillPrefab: {fileID: 1162139031701004, guid: 830df844406ec694f944b75e566137ae,
-    type: 2}
-  CorpseSpawnMaxSpeed: 10
-  CorpseSpawnMinSpeed: 5
-  CorpseSpawnAngle: 60
-  DrillSpawnMaxSpeed: 2
-  DrillSpawnMinSpeed: 1
-  DrillSpawnAngle: 45
-  MaterialTriggered: 0
 --- !u!212 &212815165001870414
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -144,15 +138,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 393538945
-  m_SortingLayer: 3
+  m_SortingLayerID: 943784635
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 42f612772466e9a4da97661bd9587c72, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
