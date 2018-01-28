@@ -388,7 +388,7 @@ public class PlayerControl : MonoBehaviour {
                 nbSplashAmmo++;
             }
         }
-
+        
         return nbSplashAmmo;
     }
 
